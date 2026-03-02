@@ -27,6 +27,7 @@ No dock icon (`LSUIElement = true`). App lives in the menu bar only.
 ## v1 Features
 
 ### 1. Crosshair Overlay
+
 - Four line segments (left/right/up/down from cursor)
 - Customizable: color, thickness, line style (solid/dashed/dotted)
 - Keepout gap around cursor (adjustable)
@@ -34,20 +35,24 @@ No dock icon (`LSUIElement = true`). App lives in the menu bar only.
 - Fade out after configurable idle timeout, instant reappear on move
 
 ### 2. Spotlight Mode
+
 - Semi-transparent circular highlight around cursor
 - Customizable radius, color, opacity
 
 ### 3. Reading Guide ("Focus Strip")
+
 - Regions above and below a horizontal band around cursor are dimmed
 - Creates a "mail slot" effect for reading lines of text
 - Adjustable band height and dim opacity
 
 ### 4. Auto-Center
+
 - Global hotkey (default: Cmd+Shift+C) moves cursor to center of current screen
 - Flash + fade animation at center point to draw eyes (bright circle scales up and fades out over ~0.5s)
 - Also accessible from menu bar
 
 ### 5. Menu Bar Interface
+
 - NSStatusItem with icon (SF Symbol `"target"`)
 - Toggle crosshair / spotlight / reading guide (with checkmarks)
 - "Center Cursor" action
@@ -55,18 +60,20 @@ No dock icon (`LSUIElement = true`). App lives in the menu bar only.
 - "Quit Beacon"
 
 ### 6. Settings Panel (SwiftUI)
+
 - All customization options organized by feature section
 - Persisted via UserDefaults/@AppStorage
 - Changes take effect immediately on the overlay
 
 ### 7. Multi-Monitor
+
 - One overlay window per connected screen
 - Automatic detection of monitor connect/disconnect via `NSApplication.didChangeScreenParametersNotification`
 - Crosshair follows cursor across screens
 
 ## Project Structure
 
-```
+```bash
 Beacon/
   Beacon.xcodeproj/
   Beacon/
@@ -103,9 +110,11 @@ Beacon/
 Each milestone produces a runnable, testable app.
 
 ### Milestone 1: Crosshair on Screen
+
 **Goal**: Transparent overlay window with crosshair lines following the mouse using CAShapeLayer + CGEventTap.
 
 **Create Xcode project first**:
+
 1. Xcode > File > New > Project > macOS > App
 2. Product Name: Beacon, Interface: SwiftUI, Language: Swift
 3. Save to `/Users/adamstone/git/crosshair-app/`
@@ -114,6 +123,7 @@ Each milestone produces a runnable, testable app.
 6. Enable App Sandbox in entitlements
 
 **Files**:
+
 - `BeaconApp.swift` — `@main` with `@NSApplicationDelegateAdaptor`, `Settings` scene only (no `WindowGroup`)
 - `AppDelegate.swift` — creates one `OverlayWindowController` on `NSScreen.main`, initializes `MouseTracker`
 - `OverlayWindowController.swift` — creates `NSWindow` (borderless, transparent, floating, click-through, `canJoinAllSpaces`)
@@ -125,9 +135,11 @@ Each milestone produces a runnable, testable app.
 **Test**: Launch app. Red crosshair follows mouse smoothly. Clicks pass through. No dock icon. Quit via Activity Monitor.
 
 ### Milestone 2: Menu Bar + Quit
+
 **Goal**: Menu bar icon with Quit so you can close the app properly.
 
 **Files**:
+
 - `MenuBarManager.swift` — `NSStatusItem` with `NSMenu` containing "Quit Beacon"
 
 **Changes**: `AppDelegate` creates `MenuBarManager`.
@@ -135,14 +147,17 @@ Each milestone produces a runnable, testable app.
 **Test**: Target icon in menu bar. Click > "Quit Beacon" terminates app.
 
 ### Milestone 3: Settings Model + UI
+
 **Goal**: Crosshair color, thickness, style, gaps configurable via settings panel.
 
 **Files**:
+
 - `SettingsView.swift` — main settings view
 - `CrosshairSettingsSection.swift` — `ColorPicker`, `Slider`s, `Picker` for line style
 - `GeneralSettingsSection.swift` — fade timeout slider
 
 **Changes**:
+
 - `CrosshairRenderer` reads from `UserDefaults` instead of hardcoded values
 - `MenuBarManager` adds "Settings..." item (uses `NSApp.sendAction(Selector(("showSettingsWindow:")))`)
 
@@ -151,9 +166,11 @@ Each milestone produces a runnable, testable app.
 **Test**: Open settings from menu bar. Change color to blue, thickness to 5, style to dotted. Crosshair updates immediately.
 
 ### Milestone 4: Multi-Monitor
+
 **Goal**: Overlay on all connected screens, handles plug/unplug.
 
 **Changes**:
+
 - `AppDelegate` iterates `NSScreen.screens`, creates one `OverlayWindowController` per screen
 - Observes `NSApplication.didChangeScreenParametersNotification` to rebuild overlays
 - `OverlayView` converts global `NSEvent.mouseLocation` to local coordinates per-screen
@@ -161,9 +178,11 @@ Each milestone produces a runnable, testable app.
 **Test**: Connect external monitor. Crosshair appears on both screens and follows cursor across them.
 
 ### Milestone 5: Fade Timeout
+
 **Goal**: Crosshair fades out after idle, reappears on move.
 
 **Changes**:
+
 - `MouseTracker` tracks `lastMoveTime`
 - `OverlayView` / crosshair layers animate opacity to 0 after timeout
 - Instant reappear (opacity = 1) on next mouse move
@@ -172,9 +191,11 @@ Each milestone produces a runnable, testable app.
 **Test**: Set fade to 2s. Stop moving mouse. Crosshair smoothly fades. Move mouse — instant reappear.
 
 ### Milestone 6: Spotlight Mode
+
 **Goal**: Optional circular highlight around cursor.
 
 **Files**:
+
 - `SpotlightRenderer.swift` — `CAShapeLayer` filled circle, moves with cursor
 - `SpotlightSettingsSection.swift` — radius, color, opacity controls
 
@@ -183,9 +204,11 @@ Each milestone produces a runnable, testable app.
 **Test**: Toggle spotlight on. Semi-transparent circle follows cursor. Adjust radius/opacity in settings.
 
 ### Milestone 7: Reading Guide
+
 **Goal**: Dimmed regions above/below cursor band.
 
 **Files**:
+
 - `ReadingGuideRenderer.swift` — two `CAShapeLayer` rectangles (top dim, bottom dim)
 - `ReadingGuideSettingsSection.swift` — band height, dim opacity
 
@@ -194,13 +217,16 @@ Each milestone produces a runnable, testable app.
 **Test**: Toggle on. Screen dims above and below a clear horizontal strip at cursor height. Adjust band height. Works with crosshair and spotlight simultaneously.
 
 ### Milestone 8: Auto-Center + Flash
+
 **Goal**: Global hotkey moves cursor to screen center with flash animation.
 
 **Files**:
+
 - `HotkeyManager.swift` — Carbon `RegisterEventHotKey` wrapper (~50 lines)
 - `FlashAnimationView.swift` — `CAShapeLayer` circle with scale-up + fade-out `CABasicAnimation`
 
 **Changes**:
+
 - `AppDelegate.performAutoCenter()` — calls `CGWarpMouseCursorPosition` then triggers flash
 - `MenuBarManager` adds "Center Cursor" item
 - Settings section for hotkey configuration
@@ -208,6 +234,7 @@ Each milestone produces a runnable, testable app.
 **Test**: Press Cmd+Shift+C. Cursor jumps to center of current screen. Bright circle flashes and fades at center.
 
 ### Milestone 9: Polish + Edge Cases
+
 - Menu bar checkmarks stay in sync with feature toggles
 - Overlay redraws on toggle even when mouse is stationary
 - Handle all features disabled (draw nothing)
@@ -221,6 +248,7 @@ Each milestone produces a runnable, testable app.
 ## Technical Notes
 
 **Coordinate systems** (biggest source of bugs):
+
 - AppKit/NSScreen: origin bottom-left, y up
 - CoreGraphics/CGWarpMouseCursorPosition: origin top-left, y down
 - `ScreenUtilities` handles all conversions
@@ -240,6 +268,7 @@ Each milestone produces a runnable, testable app.
 ## Verification
 
 After each milestone:
+
 1. Build and run from Xcode (Cmd+R)
 2. Verify the feature works as described in that milestone's "Test" section
 3. Verify no regressions (previous features still work)
@@ -247,6 +276,7 @@ After each milestone:
 5. From milestone 4 onward: test with multiple monitors if available
 
 Final verification before release:
+
 - All features work independently and in combination
 - Settings persist across app restart
 - Multi-monitor connect/disconnect works
@@ -256,6 +286,7 @@ Final verification before release:
 - App works in all Spaces and alongside fullscreen apps
 
 ## Future Enhancements (Post-v1)
+
 - Gradient color animation for auto-center (replace flash with color sweep)
 - Audio cues / sonification for cursor position (for hearing low-vision users)
 - Pointer trails / motion echo
