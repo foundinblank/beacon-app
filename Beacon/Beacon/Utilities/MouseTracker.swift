@@ -4,8 +4,8 @@ import CoreGraphics
 class MouseTracker {
     typealias PositionCallback = (NSPoint) -> Void
 
-    private let callback: PositionCallback
-    private var eventTap: CFMachPort?
+    fileprivate let callback: PositionCallback
+    fileprivate var eventTap: CFMachPort?
     private var runLoopSource: CFRunLoopSource?
 
     init(callback: @escaping PositionCallback) {
