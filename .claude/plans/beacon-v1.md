@@ -212,8 +212,10 @@ Each milestone produces a runnable, testable app.
 - Overlay redraws on toggle even when mouse is stationary
 - Handle all features disabled (draw nothing)
 - Test with Mission Control, fullscreen apps, Spaces
+- Test compatibility with Apple Accessibility Zoom (System Settings > Accessibility > Zoom) — verify overlay renders correctly and coordinates stay accurate when Zoom is active
 - Add app icon
 - First-launch prompt for Input Monitoring permission (needed for CGEventTap)
+- Add "Launch at Login" toggle in settings using `SMAppService.mainApp` (macOS 13+)
 - Test on macOS 14 and 15
 
 ## Technical Notes
@@ -230,6 +232,10 @@ Each milestone produces a runnable, testable app.
 **NSColor in @AppStorage**: Store colors as hex strings, convert via a small `NSColor` extension.
 
 **Opening Settings from menu bar**: `NSApp.activate(ignoringOtherApps: true)` then `NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)` on macOS 14+.
+
+**Apple Accessibility Zoom compatibility**: macOS Zoom (System Settings > Accessibility > Zoom) can use a fullscreen or picture-in-picture lens that alters the relationship between screen coordinates and visible content. Our overlay windows sit at the NSWindow level, so they should move with Zoom naturally, but this needs testing — especially that crosshair coordinates remain correct and the overlay doesn't interfere with Zoom's own UI. This is a Milestone 9 test case, not an implementation task upfront.
+
+**Launch at Login**: Use `SMAppService.mainApp.register()` (macOS 13+, ServiceManagement framework). Provides a toggle in settings; macOS handles the rest. No legacy LaunchAgent or LoginItem helper needed.
 
 ## Verification
 
