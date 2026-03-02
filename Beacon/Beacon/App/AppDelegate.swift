@@ -8,7 +8,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         guard let screen = NSScreen.main else { return }
 
         overlayController = OverlayWindowController(screen: screen)
-        overlayController?.showWindow(nil)
+        overlayController?.window?.orderFrontRegardless()
 
         mouseTracker = MouseTracker { [weak self] position in
             self?.overlayController?.updateCursorPosition(position)
