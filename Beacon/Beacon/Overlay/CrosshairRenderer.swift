@@ -15,7 +15,11 @@ class CrosshairRenderer {
 
     private var lastDrawnPosition: NSPoint = .zero
     private var lastDrawnBounds: NSRect = .zero
-    private var lastAppliedSettings: [String: Any] = [:]
+    private var lastColorHex: String = ""
+    private var lastThickness: CGFloat = -1
+    private var lastLineStyle: String = ""
+    private var lastDashLength: CGFloat = -1
+    private var lastGapLength: CGFloat = -1
 
     private lazy var allLines: [CAShapeLayer] = [topLine, bottomLine, leftLine, rightLine]
 
@@ -92,12 +96,14 @@ class CrosshairRenderer {
         let dashLengthVal = defaultedDouble(forKey: SettingsKeys.crosshairDashLength, default: SettingsDefaults.crosshairDashLength)
         let gapLengthVal = defaultedDouble(forKey: SettingsKeys.crosshairGapLength, default: SettingsDefaults.crosshairGapLength)
 
-        let currentSettings: [String: Any] = [
-            "color": colorHex, "thickness": thicknessVal,
-            "lineStyle": lineStyleRaw, "dash": dashLengthVal, "gap": gapLengthVal,
-        ]
-        if NSDictionary(dictionary: lastAppliedSettings).isEqual(to: currentSettings) { return }
-        lastAppliedSettings = currentSettings
+        if colorHex == lastColorHex && thicknessVal == lastThickness &&
+            lineStyleRaw == lastLineStyle && dashLengthVal == lastDashLength &&
+            gapLengthVal == lastGapLength { return }
+        lastColorHex = colorHex
+        lastThickness = thicknessVal
+        lastLineStyle = lineStyleRaw
+        lastDashLength = dashLengthVal
+        lastGapLength = gapLengthVal
 
         let color = (NSColor(hex: colorHex) ?? SettingsDefaults.crosshairNSColor).cgColor
         let thickness = thicknessVal
