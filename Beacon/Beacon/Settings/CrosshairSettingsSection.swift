@@ -27,14 +27,15 @@ struct CrosshairSettingsSection: View {
 
     var body: some View {
         Section("Crosshair") {
-            HStack(spacing: 8) {
+            HStack(spacing: 6) {
                 Text("Color")
+                    .fixedSize()
                 Spacer()
                 ForEach(Self.presetColors, id: \.name) { preset in
                     Circle()
                         .fill(preset.color)
                         .stroke(colorHex == preset.hex ? Color.accentColor : Color.gray.opacity(0.3), lineWidth: 2)
-                        .frame(width: 20, height: 20)
+                        .frame(width: 18, height: 18)
                         .onTapGesture {
                             colorHex = preset.hex
                         }

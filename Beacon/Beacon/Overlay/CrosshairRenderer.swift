@@ -48,10 +48,12 @@ class CrosshairRenderer {
         let x = position.x
         let y = position.y
 
-        // Left line: from left edge to cursor gap
+        // All lines draw outward from cursor so dash patterns anchor at the cursor
+
+        // Left line: from cursor gap to left edge
         let leftPath = CGMutablePath()
-        leftPath.move(to: CGPoint(x: edgeGap, y: y))
-        leftPath.addLine(to: CGPoint(x: max(edgeGap, x - gap), y: y))
+        leftPath.move(to: CGPoint(x: max(edgeGap, x - gap), y: y))
+        leftPath.addLine(to: CGPoint(x: edgeGap, y: y))
         leftLine.path = leftPath
 
         // Right line: from cursor gap to right edge
@@ -60,10 +62,10 @@ class CrosshairRenderer {
         rightPath.addLine(to: CGPoint(x: bounds.width - edgeGap, y: y))
         rightLine.path = rightPath
 
-        // Bottom line: from bottom edge to cursor gap (y=0 is bottom in CALayer)
+        // Bottom line: from cursor gap to bottom edge (y=0 is bottom in CALayer)
         let bottomPath = CGMutablePath()
-        bottomPath.move(to: CGPoint(x: x, y: edgeGap))
-        bottomPath.addLine(to: CGPoint(x: x, y: max(edgeGap, y - gap)))
+        bottomPath.move(to: CGPoint(x: x, y: max(edgeGap, y - gap)))
+        bottomPath.addLine(to: CGPoint(x: x, y: edgeGap))
         bottomLine.path = bottomPath
 
         // Top line: from cursor gap to top edge

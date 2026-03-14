@@ -6,6 +6,6 @@ struct SettingsView: View {
             CrosshairSettingsSection()
         }
         .formStyle(.grouped)
-        .frame(width: 380)
+        .frame(width: 450)
     }
 }
