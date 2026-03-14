@@ -20,6 +20,8 @@
 		A10000010000000000000012 /* CrosshairSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000014 /* CrosshairSettingsSection.swift */; };
 		A10000010000000000000013 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000015 /* SettingsView.swift */; };
 		A10000010000000000000014 /* GeneralSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000016 /* GeneralSettingsSection.swift */; };
+		A10000010000000000000020 /* SpotlightRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000020 /* SpotlightRenderer.swift */; };
+		A10000010000000000000021 /* SpotlightSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000021 /* SpotlightSettingsSection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		A10000020000000000000014 /* CrosshairSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrosshairSettingsSection.swift; sourceTree = "<group>"; };
 		A10000020000000000000015 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A10000020000000000000016 /* GeneralSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsSection.swift; sourceTree = "<group>"; };
+		A10000020000000000000020 /* SpotlightRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightRenderer.swift; sourceTree = "<group>"; };
+		A10000020000000000000021 /* SpotlightSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightSettingsSection.swift; sourceTree = "<group>"; };
 		A10000030000000000000001 /* Beacon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beacon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -87,6 +91,7 @@
 				A10000020000000000000003 /* OverlayWindowController.swift */,
 				A10000020000000000000004 /* OverlayView.swift */,
 				A10000020000000000000005 /* CrosshairRenderer.swift */,
+				A10000020000000000000020 /* SpotlightRenderer.swift */,
 			);
 			path = Overlay;
 			sourceTree = "<group>";
@@ -118,6 +123,7 @@
 				A10000020000000000000016 /* GeneralSettingsSection.swift */,
 				A10000020000000000000013 /* SettingsKeys.swift */,
 				A10000020000000000000015 /* SettingsView.swift */,
+				A10000020000000000000021 /* SpotlightSettingsSection.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -211,6 +217,8 @@
 				A10000010000000000000012 /* CrosshairSettingsSection.swift in Sources */,
 				A10000010000000000000013 /* SettingsView.swift in Sources */,
 				A10000010000000000000014 /* GeneralSettingsSection.swift in Sources */,
+				A10000010000000000000020 /* SpotlightRenderer.swift in Sources */,
+				A10000010000000000000021 /* SpotlightSettingsSection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -48,12 +48,8 @@ struct CrosshairSettingsSection: View {
                     .accessibilityLabel("Custom color")
             }
 
-            Slider(value: $thickness, in: 1...10, step: 1) {
-                Text("Thickness")
-            } minimumValueLabel: {
-                Text("Thin").font(.caption).foregroundStyle(.secondary)
-            } maximumValueLabel: {
-                Text("Thick").font(.caption).foregroundStyle(.secondary)
+            sliderRow("Line Thickness", value: $thickness, range: 0.5...10, step: 0.5) {
+                String(format: "%.1f px", $0)
             }
 
             Picker("Line Style", selection: $lineStyle) {

@@ -3,6 +3,7 @@ import QuartzCore
 
 @MainActor
 class OverlayView: NSView {
+    private let spotlightRenderer = SpotlightRenderer()
     private let crosshairRenderer = CrosshairRenderer()
 
     override init(frame: NSRect) {
@@ -10,6 +11,7 @@ class OverlayView: NSView {
         wantsLayer = true
         guard let layer = self.layer else { return }
         layer.backgroundColor = NSColor.clear.cgColor
+        spotlightRenderer.setup(in: layer, bounds: frame)
         crosshairRenderer.setup(in: layer, bounds: frame)
     }
 
@@ -19,6 +21,7 @@ class OverlayView: NSView {
     }
 
     func updateCursorPosition(_ position: NSPoint) {
+        spotlightRenderer.updatePosition(position, bounds: bounds)
         crosshairRenderer.updatePosition(position, bounds: bounds)
     }
 

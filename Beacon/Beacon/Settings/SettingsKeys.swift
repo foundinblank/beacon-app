@@ -7,6 +7,10 @@ enum SettingsKeys {
     static let crosshairDashLength = "crosshairDashLength"
     static let crosshairGapLength = "crosshairGapLength"
     static let fadeTimeout = "fadeTimeout"
+    static let spotlightEnabled = "spotlightEnabled"
+    static let spotlightRadius = "spotlightRadius"
+    static let spotlightDimOpacity = "spotlightDimOpacity"
+    static let spotlightBorderWidth = "spotlightBorderWidth"
 }
 
 enum SettingsDefaults {
@@ -17,6 +21,10 @@ enum SettingsDefaults {
     static let crosshairDashLength: Double = 8.0
     static let crosshairGapLength: Double = 6.0
     static let fadeTimeout: Double = 1.0  // seconds; 0 = disabled
+    static let spotlightEnabled = false
+    static let spotlightRadius: Double = 100.0
+    static let spotlightDimOpacity: Double = 0.5
+    static let spotlightBorderWidth: Double = 2.0
 }
 
 enum LineStyle: String {

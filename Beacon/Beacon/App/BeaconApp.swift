@@ -2,8 +2,11 @@ import SwiftUI
 
 private struct MenuBarMenuContent: View {
     @Environment(\.openSettings) private var openSettings
+    @AppStorage(SettingsKeys.spotlightEnabled) private var spotlightEnabled = SettingsDefaults.spotlightEnabled
 
     var body: some View {
+        Toggle("Spotlight", isOn: $spotlightEnabled)
+        Divider()
         Button("Settings...") {
             NSApp.activate()
             openSettings()
