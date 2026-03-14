@@ -23,14 +23,20 @@ class MenuBarManager: NSObject {
     }
 
     @objc private func openSettings() {
-        // Embed a SwiftUI view that uses @Environment(\.openSettings) to trigger the Settings scene
+        NSApp.activate(ignoringOtherApps: true)
+
+        // If settings is already open, just bring it forward
+        if let window = settingsWindow, window.isVisible {
+            window.makeKeyAndOrderFront(nil)
+            return
+        }
+
+        // Use a temporary SwiftUI hosting to trigger @Environment(\.openSettings)
         let trigger = NSHostingController(rootView: SettingsOpener())
         trigger.view.frame = .zero
-        // Adding to a window and triggering onAppear causes the environment action to fire
         let window = NSWindow()
         window.contentViewController = trigger
         settingsWindow = window
-        NSApp.activate(ignoringOtherApps: true)
     }
 }
 

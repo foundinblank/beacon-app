@@ -8,6 +8,7 @@ class CrosshairRenderer {
     private let rightLine = CAShapeLayer()
 
     private let defaults = UserDefaults.standard
+    private var settingsObserver: NSObjectProtocol?
 
     private var gap: CGFloat = 20.0
     private var edgeGap: CGFloat = 0.0
@@ -28,12 +29,18 @@ class CrosshairRenderer {
         }
         applySettings()
 
-        NotificationCenter.default.addObserver(
+        settingsObserver = NotificationCenter.default.addObserver(
             forName: UserDefaults.didChangeNotification,
             object: nil,
             queue: .main
         ) { [weak self] _ in
             self?.applySettings()
+        }
+    }
+
+    deinit {
+        if let token = settingsObserver {
+            NotificationCenter.default.removeObserver(token)
         }
     }
 
@@ -66,24 +73,28 @@ class CrosshairRenderer {
         topLine.path = topPath
     }
 
+    private func defaultedDouble(forKey key: String, default fallback: Double) -> CGFloat {
+        CGFloat(defaults.object(forKey: key) as? Double ?? fallback)
+    }
+
     private func applySettings() {
         let colorHex = defaults.string(forKey: SettingsKeys.crosshairColor) ?? SettingsDefaults.crosshairColor
-        let color = (NSColor(hex: colorHex) ?? .red).cgColor
-        let thickness = CGFloat(defaults.object(forKey: SettingsKeys.crosshairThickness) as? Double ?? SettingsDefaults.crosshairThickness)
-        let lineStyle = defaults.string(forKey: SettingsKeys.crosshairLineStyle) ?? SettingsDefaults.crosshairLineStyle
-        let dashLength = CGFloat(defaults.object(forKey: SettingsKeys.crosshairDashLength) as? Double ?? SettingsDefaults.crosshairDashLength)
-        let gapLength = CGFloat(defaults.object(forKey: SettingsKeys.crosshairGapLength) as? Double ?? SettingsDefaults.crosshairGapLength)
+        let color = (NSColor(hex: colorHex) ?? SettingsDefaults.crosshairNSColor).cgColor
+        let thickness = defaultedDouble(forKey: SettingsKeys.crosshairThickness, default: SettingsDefaults.crosshairThickness)
+        let lineStyle = LineStyle(rawValue: defaults.string(forKey: SettingsKeys.crosshairLineStyle) ?? SettingsDefaults.crosshairLineStyle) ?? .solid
+        let dashLength = defaultedDouble(forKey: SettingsKeys.crosshairDashLength, default: SettingsDefaults.crosshairDashLength)
+        let gapLength = defaultedDouble(forKey: SettingsKeys.crosshairGapLength, default: SettingsDefaults.crosshairGapLength)
 
         let dashPattern: [NSNumber]?
         let lineCap: CAShapeLayerLineCap
         switch lineStyle {
-        case "dashed":
+        case .dashed:
             dashPattern = [NSNumber(value: Double(dashLength)), NSNumber(value: Double(gapLength))]
             lineCap = .butt
-        case "dotted":
+        case .dotted:
             dashPattern = [NSNumber(value: 0), NSNumber(value: Double(gapLength))]
             lineCap = .round
-        default:
+        case .solid:
             dashPattern = nil
             lineCap = .butt
         }
