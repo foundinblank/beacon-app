@@ -5,6 +5,7 @@ private class OverlayPanel: NSPanel {
     override var canBecomeMain: Bool { false }
 }
 
+@MainActor
 class OverlayWindowController: NSWindowController {
     private let overlayView: OverlayView
     private let ownedScreen: NSScreen

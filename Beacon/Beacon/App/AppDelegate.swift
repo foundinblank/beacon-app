@@ -1,5 +1,6 @@
 import AppKit
 
+@MainActor
 class AppDelegate: NSObject, NSApplicationDelegate {
     private var overlayController: OverlayWindowController?
     private var mouseTracker: MouseTracker?

@@ -1,6 +1,7 @@
 import AppKit
 import QuartzCore
 
+@MainActor
 class CrosshairRenderer {
     private let topLine = CAShapeLayer()
     private let bottomLine = CAShapeLayer()
@@ -8,7 +9,7 @@ class CrosshairRenderer {
     private let rightLine = CAShapeLayer()
 
     private let defaults = UserDefaults.standard
-    private var settingsObserver: NSObjectProtocol?
+    private nonisolated(unsafe) var settingsObserver: NSObjectProtocol?
 
     private var gap: CGFloat = 20.0
     private var edgeGap: CGFloat = 0.0
@@ -37,10 +38,12 @@ class CrosshairRenderer {
 
         settingsObserver = NotificationCenter.default.addObserver(
             forName: UserDefaults.didChangeNotification,
-            object: nil,
+            object: defaults,
             queue: .main
         ) { [weak self] _ in
-            self?.applySettings()
+            MainActor.assumeIsolated {
+                self?.applySettings()
+            }
         }
     }
 

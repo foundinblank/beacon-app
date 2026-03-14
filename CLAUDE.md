@@ -10,7 +10,8 @@ Full specification: `.claude/plans/beacon-v1.md`
 
 ## Tech Stack
 
-- **Swift** with **AppKit** (overlay windows) + **SwiftUI** (settings panel only)
+- **Swift 6** with strict concurrency — all UI types annotated `@MainActor`
+- **AppKit** (overlay windows) + **SwiftUI** (settings panel only)
 - **Core Animation** (`CAShapeLayer`) for GPU-accelerated rendering
 - **CGEventTap** for low-latency mouse tracking
 - **Carbon `RegisterEventHotKey`** for global hotkeys

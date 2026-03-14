@@ -32,14 +32,16 @@ struct CrosshairSettingsSection: View {
                     .fixedSize()
                 Spacer()
                 ForEach(Self.presetColors, id: \.name) { preset in
-                    Circle()
-                        .fill(preset.color)
-                        .stroke(colorHex == preset.hex ? Color.accentColor : Color.gray.opacity(0.3), lineWidth: 2)
-                        .frame(width: 18, height: 18)
-                        .onTapGesture {
-                            colorHex = preset.hex
-                        }
-                        .accessibilityLabel(preset.name)
+                    Button {
+                        colorHex = preset.hex
+                    } label: {
+                        Circle()
+                            .fill(preset.color)
+                            .stroke(colorHex == preset.hex ? Color.accentColor : Color.gray.opacity(0.3), lineWidth: 2)
+                            .frame(width: 18, height: 18)
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel(preset.name)
                 }
                 ColorPicker("", selection: selectedColor, supportsOpacity: true)
                     .labelsHidden()
@@ -60,12 +62,14 @@ struct CrosshairSettingsSection: View {
                 Text("Dotted").tag(LineStyle.dotted.rawValue)
             }
 
-            if (LineStyle(rawValue: lineStyle) ?? .solid).hasDashParameters {
+            if lineStyle == LineStyle.dashed.rawValue {
                 sliderRow("Dash Length", value: $dashLength, range: 1...20, step: 1) {
                     "\(Int($0)) px"
                 }
+            }
 
-                sliderRow("Gap Length", value: $gapLength, range: 1...20, step: 1) {
+            if (LineStyle(rawValue: lineStyle) ?? .solid).hasDashParameters {
+                sliderRow("Spacing", value: $gapLength, range: 1...20, step: 1) {
                     "\(Int($0)) px"
                 }
             }
