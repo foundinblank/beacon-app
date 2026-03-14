@@ -17,6 +17,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             SettingsKeys.crosshairDashLength: SettingsDefaults.crosshairDashLength,
             SettingsKeys.crosshairGapLength: SettingsDefaults.crosshairGapLength,
             SettingsKeys.fadeTimeout: SettingsDefaults.fadeTimeout,
+            SettingsKeys.spotlightEnabled: SettingsDefaults.spotlightEnabled,
+            SettingsKeys.spotlightRadius: SettingsDefaults.spotlightRadius,
+            SettingsKeys.spotlightDimOpacity: SettingsDefaults.spotlightDimOpacity,
+            SettingsKeys.spotlightBorderWidth: SettingsDefaults.spotlightBorderWidth,
+            SettingsKeys.pingMode: SettingsDefaults.pingMode,
+            SettingsKeys.rippleColor: SettingsDefaults.rippleColor,
         ])
 
         buildOverlays()
