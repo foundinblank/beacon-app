@@ -13,9 +13,11 @@ class CrosshairRenderer {
     private var gap: CGFloat = 20.0
     private var edgeGap: CGFloat = 0.0
 
-    private var allLines: [CAShapeLayer] {
-        [topLine, bottomLine, leftLine, rightLine]
-    }
+    private var lastDrawnPosition: NSPoint = .zero
+    private var lastDrawnBounds: NSRect = .zero
+    private var lastAppliedSettings: [String: Any] = [:]
+
+    private lazy var allLines: [CAShapeLayer] = [topLine, bottomLine, leftLine, rightLine]
 
     func setup(in layer: CALayer, bounds: NSRect) {
         for line in allLines {
@@ -45,6 +47,10 @@ class CrosshairRenderer {
     }
 
     func updatePosition(_ position: NSPoint, bounds: NSRect) {
+        guard position != lastDrawnPosition || bounds != lastDrawnBounds else { return }
+        lastDrawnPosition = position
+        lastDrawnBounds = bounds
+
         let x = position.x
         let y = position.y
 
@@ -81,11 +87,23 @@ class CrosshairRenderer {
 
     private func applySettings() {
         let colorHex = defaults.string(forKey: SettingsKeys.crosshairColor) ?? SettingsDefaults.crosshairColor
+        let thicknessVal = defaultedDouble(forKey: SettingsKeys.crosshairThickness, default: SettingsDefaults.crosshairThickness)
+        let lineStyleRaw = defaults.string(forKey: SettingsKeys.crosshairLineStyle) ?? SettingsDefaults.crosshairLineStyle
+        let dashLengthVal = defaultedDouble(forKey: SettingsKeys.crosshairDashLength, default: SettingsDefaults.crosshairDashLength)
+        let gapLengthVal = defaultedDouble(forKey: SettingsKeys.crosshairGapLength, default: SettingsDefaults.crosshairGapLength)
+
+        let currentSettings: [String: Any] = [
+            "color": colorHex, "thickness": thicknessVal,
+            "lineStyle": lineStyleRaw, "dash": dashLengthVal, "gap": gapLengthVal,
+        ]
+        if NSDictionary(dictionary: lastAppliedSettings).isEqual(to: currentSettings) { return }
+        lastAppliedSettings = currentSettings
+
         let color = (NSColor(hex: colorHex) ?? SettingsDefaults.crosshairNSColor).cgColor
-        let thickness = defaultedDouble(forKey: SettingsKeys.crosshairThickness, default: SettingsDefaults.crosshairThickness)
-        let lineStyle = LineStyle(rawValue: defaults.string(forKey: SettingsKeys.crosshairLineStyle) ?? SettingsDefaults.crosshairLineStyle) ?? .solid
-        let dashLength = defaultedDouble(forKey: SettingsKeys.crosshairDashLength, default: SettingsDefaults.crosshairDashLength)
-        let gapLength = defaultedDouble(forKey: SettingsKeys.crosshairGapLength, default: SettingsDefaults.crosshairGapLength)
+        let thickness = thicknessVal
+        let lineStyle = LineStyle(rawValue: lineStyleRaw) ?? .solid
+        let dashLength = dashLengthVal
+        let gapLength = gapLengthVal
 
         let dashPattern: [NSNumber]?
         let lineCap: CAShapeLayerLineCap

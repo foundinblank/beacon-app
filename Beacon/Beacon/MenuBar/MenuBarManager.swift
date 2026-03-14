@@ -31,6 +31,10 @@ class MenuBarManager: NSObject {
             return
         }
 
+        // Clean up any previous hidden window before creating a new one
+        settingsWindow?.close()
+        settingsWindow = nil
+
         // Use a temporary SwiftUI hosting to trigger @Environment(\.openSettings)
         let trigger = NSHostingController(rootView: SettingsOpener())
         trigger.view.frame = .zero

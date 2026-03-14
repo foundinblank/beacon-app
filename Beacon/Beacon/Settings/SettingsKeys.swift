@@ -10,7 +10,7 @@ enum SettingsKeys {
 
 enum SettingsDefaults {
     static let crosshairColor = "#FF0000"
-    static let crosshairNSColor: NSColor = .red
+    static let crosshairNSColor: NSColor = NSColor(hex: crosshairColor) ?? .red
     static let crosshairThickness: Double = 2.0
     static let crosshairLineStyle = LineStyle.solid.rawValue
     static let crosshairDashLength: Double = 8.0
@@ -19,4 +19,8 @@ enum SettingsDefaults {
 
 enum LineStyle: String {
     case solid, dashed, dotted
+
+    var hasDashParameters: Bool {
+        self != .solid
+    }
 }

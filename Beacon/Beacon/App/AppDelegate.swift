@@ -18,4 +18,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         mouseTracker?.start()
     }
+
+    func applicationWillTerminate(_ notification: Notification) {
+        mouseTracker?.stop()
+    }
 }

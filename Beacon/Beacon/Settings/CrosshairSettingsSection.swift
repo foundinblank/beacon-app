@@ -20,7 +20,7 @@ struct CrosshairSettingsSection: View {
         ("Green", .green, NSColor.green.hexString),
         ("Cyan", .cyan, NSColor.cyan.hexString),
         ("Blue", .blue, NSColor.blue.hexString),
-        ("Magenta", .purple, NSColor.purple.hexString),
+        ("Magenta", Color(nsColor: .magenta), NSColor.magenta.hexString),
         ("White", .white, NSColor.white.hexString),
         ("Black", .black, NSColor.black.hexString),
     ]
@@ -46,8 +46,12 @@ struct CrosshairSettingsSection: View {
                     .accessibilityLabel("Custom color")
             }
 
-            sliderRow("Thickness", value: $thickness, range: 1...10, step: 0.5) {
-                String(format: "%.1f px", $0)
+            Slider(value: $thickness, in: 1...10, step: 1) {
+                Text("Thickness")
+            } minimumValueLabel: {
+                Text("Thin").font(.caption).foregroundStyle(.secondary)
+            } maximumValueLabel: {
+                Text("Thick").font(.caption).foregroundStyle(.secondary)
             }
 
             Picker("Line Style", selection: $lineStyle) {
@@ -56,7 +60,7 @@ struct CrosshairSettingsSection: View {
                 Text("Dotted").tag(LineStyle.dotted.rawValue)
             }
 
-            if lineStyle != LineStyle.solid.rawValue {
+            if (LineStyle(rawValue: lineStyle) ?? .solid).hasDashParameters {
                 sliderRow("Dash Length", value: $dashLength, range: 1...20, step: 1) {
                     "\(Int($0)) px"
                 }

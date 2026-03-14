@@ -7,6 +7,7 @@ private class OverlayPanel: NSPanel {
 
 class OverlayWindowController: NSWindowController {
     private let overlayView: OverlayView
+    private let ownedScreen: NSScreen
 
     init(screen: NSScreen) {
         let window = OverlayPanel(
@@ -27,6 +28,7 @@ class OverlayWindowController: NSWindowController {
         let view = OverlayView(frame: screen.frame)
         window.contentView = view
         self.overlayView = view
+        self.ownedScreen = screen
 
         super.init(window: window)
     }
@@ -37,7 +39,8 @@ class OverlayWindowController: NSWindowController {
     }
 
     func updateCursorPosition(_ globalPosition: NSPoint) {
-        guard let window = window, let screen = window.screen ?? NSScreen.main else { return }
+        guard let window = window else { return }
+        let screen = window.screen ?? ownedScreen
         let localPosition = ScreenUtilities.globalToLocal(globalPosition, in: screen)
         overlayView.updateCursorPosition(localPosition)
     }
