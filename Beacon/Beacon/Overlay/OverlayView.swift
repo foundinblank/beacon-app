@@ -26,4 +26,20 @@ class OverlayView: NSView {
         guard layer?.opacity != newAlpha else { return }
         layer?.opacity = newAlpha
     }
+
+    func fadeOut(duration: CFTimeInterval) {
+        guard let layer = layer, layer.opacity != 0 else { return }
+        let animation = CABasicAnimation(keyPath: "opacity")
+        animation.fromValue = layer.opacity
+        animation.toValue = Float(0)
+        animation.duration = duration
+        layer.add(animation, forKey: "fadeOut")
+        layer.opacity = 0
+    }
+
+    func fadeIn() {
+        guard let layer = layer, layer.opacity != 1 else { return }
+        layer.removeAnimation(forKey: "fadeOut")
+        layer.opacity = 1
+    }
 }

@@ -51,4 +51,12 @@ class OverlayWindowController: NSWindowController {
             overlayView.setVisible(false)
         }
     }
+
+    func fadeOut(duration: CFTimeInterval) {
+        overlayView.fadeOut(duration: duration)
+    }
+
+    func fadeIn() {
+        overlayView.fadeIn()
+    }
 }

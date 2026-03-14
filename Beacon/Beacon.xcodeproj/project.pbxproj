@@ -19,6 +19,7 @@
 		A10000010000000000000011 /* SettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000013 /* SettingsKeys.swift */; };
 		A10000010000000000000012 /* CrosshairSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000014 /* CrosshairSettingsSection.swift */; };
 		A10000010000000000000013 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000015 /* SettingsView.swift */; };
+		A10000010000000000000014 /* GeneralSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000016 /* GeneralSettingsSection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		A10000020000000000000013 /* SettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsKeys.swift; sourceTree = "<group>"; };
 		A10000020000000000000014 /* CrosshairSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrosshairSettingsSection.swift; sourceTree = "<group>"; };
 		A10000020000000000000015 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A10000020000000000000016 /* GeneralSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsSection.swift; sourceTree = "<group>"; };
 		A10000030000000000000001 /* Beacon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beacon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				A10000020000000000000014 /* CrosshairSettingsSection.swift */,
+				A10000020000000000000016 /* GeneralSettingsSection.swift */,
 				A10000020000000000000013 /* SettingsKeys.swift */,
 				A10000020000000000000015 /* SettingsView.swift */,
 			);
@@ -207,6 +210,7 @@
 				A10000010000000000000011 /* SettingsKeys.swift in Sources */,
 				A10000010000000000000012 /* CrosshairSettingsSection.swift in Sources */,
 				A10000010000000000000013 /* SettingsView.swift in Sources */,
+				A10000010000000000000014 /* GeneralSettingsSection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

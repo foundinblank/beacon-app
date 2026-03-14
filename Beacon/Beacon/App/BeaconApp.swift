@@ -1,5 +1,22 @@
 import SwiftUI
 
+private struct MenuBarMenuContent: View {
+    @Environment(\.openSettings) private var openSettings
+
+    var body: some View {
+        Button("Settings...") {
+            NSApp.activate(ignoringOtherApps: true)
+            openSettings()
+        }
+        .keyboardShortcut(",")
+        Divider()
+        Button("Quit Beacon") {
+            NSApplication.shared.terminate(nil)
+        }
+        .keyboardShortcut("q")
+    }
+}
+
 @main
 struct BeaconApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
@@ -9,12 +26,7 @@ struct BeaconApp: App {
             SettingsView()
         }
         MenuBarExtra("Beacon", systemImage: "target") {
-            SettingsLink()
-            Divider()
-            Button("Quit Beacon") {
-                NSApplication.shared.terminate(nil)
-            }
-            .keyboardShortcut("q")
+            MenuBarMenuContent()
         }
     }
 }
