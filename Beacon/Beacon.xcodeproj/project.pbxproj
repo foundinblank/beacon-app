@@ -15,6 +15,7 @@
 		A10000010000000000000006 /* MouseTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000006; };
 		A10000010000000000000007 /* ScreenUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000007; };
 		A10000010000000000000008 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000008; };
+		A10000010000000000000009 /* MenuBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000011; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		A10000020000000000000008 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A10000020000000000000009 /* Beacon.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Beacon.entitlements; sourceTree = "<group>"; };
 		A10000020000000000000010 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A10000020000000000000011 /* MenuBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarManager.swift; sourceTree = "<group>"; };
 		A10000030000000000000001 /* Beacon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beacon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -54,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				A10000050000000000000003 /* App */,
+				A10000050000000000000007 /* MenuBar */,
 				A10000050000000000000004 /* Overlay */,
 				A10000050000000000000005 /* Utilities */,
 				A10000050000000000000006 /* Resources */,
@@ -97,6 +100,14 @@
 				A10000020000000000000010 /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		A10000050000000000000007 /* MenuBar */ = {
+			isa = PBXGroup;
+			children = (
+				A10000020000000000000011 /* MenuBarManager.swift */,
+			);
+			path = MenuBar;
 			sourceTree = "<group>";
 		};
 		A10000050000000000000009 /* Products */ = {
@@ -183,6 +194,7 @@
 				A10000010000000000000005 /* CrosshairRenderer.swift in Sources */,
 				A10000010000000000000006 /* MouseTracker.swift in Sources */,
 				A10000010000000000000007 /* ScreenUtilities.swift in Sources */,
+				A10000010000000000000009 /* MenuBarManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
