@@ -18,12 +18,11 @@ People with visual impairments struggle to track the mouse cursor on macOS. Exis
 
 ## Available Skills
 
-The following Claude Code skills are available for use when working on this project:
+The following Claude Code skills are available (all user-level, in `~/.claude/skills/`):
 
-- **macos-app-design** (project) — macOS application design patterns, menu bar structure, keyboard shortcuts, multi-window behavior
-- **macos-development** (project) — macOS development guidance including Swift 6+, SwiftUI, SwiftData, architecture, AppKit bridging
-- **swiftui-expert-skill** (user) — SwiftUI best practices for state management, view composition, performance, macOS-specific APIs
-- **macos** (user) — macOS platform-specific development with menu bar apps, window management, AppKit integration
+- **petekp-claude-code-setup-macos-app-design** — macOS application design patterns, menu bar structure, keyboard shortcuts, multi-window behavior
+- **apple-macos-dev** — macOS development guidance including Swift 6+, SwiftUI, SwiftData, architecture, AppKit bridging
+- **swiftui-expert-skill** — SwiftUI best practices for state management, view composition, performance, macOS-specific APIs
 
 ## How It Works
 

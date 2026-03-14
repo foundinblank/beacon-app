@@ -63,3 +63,15 @@ After each change:
 4. Test click-through (can interact with apps beneath overlay)
 5. Test with multiple monitors if available
 6. Check CPU/memory usage isn't excessive (Activity Monitor)
+
+## Bug Fixes
+
+When fixing bugs in Swift/SwiftUI, do NOT speculatively refactor adjacent code. Fix only the reported issue. Ask before making additional changes.
+
+## macOS / Swift Development
+
+For macOS development: prefer NSEvent monitors over CGEventTap for background tracking, remember y-coordinate flipping for screen coordinates, and avoid deprecated AppKit APIs. Always verify API availability for the target macOS version before using it.
+
+## Workflow
+
+After any Swift code change, run a build (`xcodebuild`) before committing to catch @MainActor isolation, concurrency, and type errors early.
