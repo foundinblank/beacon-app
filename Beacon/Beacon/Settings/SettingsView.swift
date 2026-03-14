@@ -5,6 +5,7 @@ struct SettingsView: View {
         Form {
             CrosshairSettingsSection()
             SpotlightSettingsSection()
+            PingSettingsSection()
             GeneralSettingsSection()
         }
         .formStyle(.grouped)
