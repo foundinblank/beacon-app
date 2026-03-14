@@ -26,6 +26,7 @@
 		A10000010000000000000021 /* SpotlightSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000021 /* SpotlightSettingsSection.swift */; };
 		A10000010000000000000022 /* SliderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000022 /* SliderRow.swift */; };
 		A10000010000000000000040 /* PingSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000040 /* PingSettingsSection.swift */; };
+		A10000010000000000000050 /* RippleAnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000050 /* RippleAnimationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		A10000020000000000000021 /* SpotlightSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightSettingsSection.swift; sourceTree = "<group>"; };
 		A10000020000000000000022 /* SliderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderRow.swift; sourceTree = "<group>"; };
 		A10000020000000000000040 /* PingSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingSettingsSection.swift; sourceTree = "<group>"; };
+		A10000020000000000000050 /* RippleAnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RippleAnimationManager.swift; sourceTree = "<group>"; };
 		A10000020000000000000030 /* CapsLockDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsLockDetector.swift; sourceTree = "<group>"; };
 		A10000020000000000000031 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		A10000030000000000000001 /* Beacon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beacon.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +112,7 @@
 				A10000020000000000000004 /* OverlayView.swift */,
 				A10000020000000000000005 /* CrosshairRenderer.swift */,
 				A10000020000000000000020 /* SpotlightRenderer.swift */,
+				A10000020000000000000050 /* RippleAnimationManager.swift */,
 			);
 			path = Overlay;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 				A10000010000000000000022 /* SliderRow.swift in Sources */,
 				A10000010000000000000030 /* CapsLockDetector.swift in Sources */,
 				A10000010000000000000040 /* PingSettingsSection.swift in Sources */,
+				A10000010000000000000050 /* RippleAnimationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
