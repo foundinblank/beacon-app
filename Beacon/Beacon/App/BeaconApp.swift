@@ -16,6 +16,9 @@ private struct MenuBarMenuContent: View {
                     ]
                 )
             }
+        Button("Ping") {
+            (NSApp.delegate as? AppDelegate)?.performPing()
+        }
         Divider()
         Button("Settings...") {
             NSApp.activate()
