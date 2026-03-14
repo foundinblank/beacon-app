@@ -8,5 +8,13 @@ struct BeaconApp: App {
         Settings {
             SettingsView()
         }
+        MenuBarExtra("Beacon", systemImage: "target") {
+            SettingsLink()
+            Divider()
+            Button("Quit Beacon") {
+                NSApplication.shared.terminate(nil)
+            }
+            .keyboardShortcut("q")
+        }
     }
 }

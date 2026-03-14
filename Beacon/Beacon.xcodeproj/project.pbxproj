@@ -15,7 +15,6 @@
 		A10000010000000000000006 /* MouseTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000006 /* MouseTracker.swift */; };
 		A10000010000000000000007 /* ScreenUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000007 /* ScreenUtilities.swift */; };
 		A10000010000000000000008 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000008 /* Assets.xcassets */; };
-		A10000010000000000000009 /* MenuBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000011 /* MenuBarManager.swift */; };
 		A10000010000000000000010 /* NSColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000012 /* NSColor+Hex.swift */; };
 		A10000010000000000000011 /* SettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000013 /* SettingsKeys.swift */; };
 		A10000010000000000000012 /* CrosshairSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000014 /* CrosshairSettingsSection.swift */; };
@@ -33,7 +32,6 @@
 		A10000020000000000000008 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A10000020000000000000009 /* Beacon.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Beacon.entitlements; sourceTree = "<group>"; };
 		A10000020000000000000010 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A10000020000000000000011 /* MenuBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarManager.swift; sourceTree = "<group>"; };
 		A10000020000000000000012 /* NSColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSColor+Hex.swift"; sourceTree = "<group>"; };
 		A10000020000000000000013 /* SettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsKeys.swift; sourceTree = "<group>"; };
 		A10000020000000000000014 /* CrosshairSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrosshairSettingsSection.swift; sourceTree = "<group>"; };
@@ -64,7 +62,6 @@
 			isa = PBXGroup;
 			children = (
 				A10000050000000000000003 /* App */,
-				A10000050000000000000007 /* MenuBar */,
 				A10000050000000000000004 /* Overlay */,
 				A10000050000000000000008 /* Settings */,
 				A10000050000000000000005 /* Utilities */,
@@ -110,14 +107,6 @@
 				A10000020000000000000010 /* Info.plist */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		A10000050000000000000007 /* MenuBar */ = {
-			isa = PBXGroup;
-			children = (
-				A10000020000000000000011 /* MenuBarManager.swift */,
-			);
-			path = MenuBar;
 			sourceTree = "<group>";
 		};
 		A10000050000000000000008 /* Settings */ = {
@@ -214,7 +203,6 @@
 				A10000010000000000000005 /* CrosshairRenderer.swift in Sources */,
 				A10000010000000000000006 /* MouseTracker.swift in Sources */,
 				A10000010000000000000007 /* ScreenUtilities.swift in Sources */,
-				A10000010000000000000009 /* MenuBarManager.swift in Sources */,
 				A10000010000000000000010 /* NSColor+Hex.swift in Sources */,
 				A10000010000000000000011 /* SettingsKeys.swift in Sources */,
 				A10000010000000000000012 /* CrosshairSettingsSection.swift in Sources */,

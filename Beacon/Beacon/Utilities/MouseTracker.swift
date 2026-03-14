@@ -6,6 +6,7 @@ class MouseTracker {
     private let callback: PositionCallback
     private var globalMonitor: Any?
     private var localMonitor: Any?
+    private var trackingTimer: Timer?
 
     init(callback: @escaping PositionCallback) {
         self.callback = callback
@@ -24,6 +25,13 @@ class MouseTracker {
             self?.callback(NSEvent.mouseLocation)
             return event
         }
+
+        // Fallback polling during modal event tracking (e.g., menu bar open)
+        let timer = Timer(timeInterval: 1.0 / 60, repeats: true) { [weak self] _ in
+            self?.callback(NSEvent.mouseLocation)
+        }
+        RunLoop.main.add(timer, forMode: .eventTracking)
+        trackingTimer = timer
     }
 
     func stop() {
@@ -33,6 +41,8 @@ class MouseTracker {
         if let monitor = localMonitor {
             NSEvent.removeMonitor(monitor)
         }
+        trackingTimer?.invalidate()
+        trackingTimer = nil
         globalMonitor = nil
         localMonitor = nil
     }
