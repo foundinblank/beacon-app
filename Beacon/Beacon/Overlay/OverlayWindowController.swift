@@ -62,9 +62,8 @@ class OverlayWindowController: NSWindowController {
     }
 
     func playRipple(at globalPosition: NSPoint) {
-        guard let screen = window?.screen else { return }
-        guard screen.frame.contains(globalPosition) else { return }
-        let localPosition = ScreenUtilities.globalToLocal(globalPosition, in: screen)
+        guard ownedScreen.frame.contains(globalPosition) else { return }
+        let localPosition = ScreenUtilities.globalToLocal(globalPosition, in: ownedScreen)
         overlayView.playRipple(at: localPosition)
     }
 }
