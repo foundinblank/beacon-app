@@ -40,7 +40,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         mouseTracker?.start()
 
         capsLockDetector = CapsLockDetector { [weak self] in
-            NSLog("Beacon: Caps Lock double-tap detected!")
+            self?.performPing()
         }
         capsLockDetector?.start()
     }
@@ -107,5 +107,61 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         for controller in overlayControllers {
             controller.updateCursorPosition(cursorPosition)
         }
+    }
+
+    func performPing() {
+        let modeRaw = defaults.string(forKey: SettingsKeys.pingMode) ?? SettingsDefaults.pingMode
+        let mode = PingMode(rawValue: modeRaw) ?? .centerAndRipple
+
+        // Determine current screen
+        let mouseLocation = NSEvent.mouseLocation
+        let currentScreen = NSScreen.screens.first(where: { $0.frame.contains(mouseLocation) })
+            ?? NSScreen.main
+            ?? NSScreen.screens[0]
+
+        // Restore visibility if faded out
+        if isFadedOut {
+            isFadedOut = false
+            for controller in overlayControllers {
+                controller.fadeIn()
+            }
+        }
+        resetFadeTimer()
+
+        // Determine target position
+        var targetAppKitPosition: NSPoint
+
+        if mode == .rippleOnly {
+            targetAppKitPosition = mouseLocation
+        } else {
+            // Center cursor
+            let cgCenter = ScreenUtilities.screenCenter(of: currentScreen)
+            let result = CGWarpMouseCursorPosition(cgCenter)
+            if result != .success {
+                NSLog("Beacon: CGWarpMouseCursorPosition failed with error \(result.rawValue)")
+            }
+            targetAppKitPosition = NSPoint(x: currentScreen.frame.midX, y: currentScreen.frame.midY)
+
+            // Update overlays at new position
+            updateAllOverlays(cursorPosition: targetAppKitPosition)
+        }
+
+        // Play ripple if mode includes it
+        if mode != .centerOnly {
+            for controller in overlayControllers {
+                controller.playRipple(at: targetAppKitPosition)
+            }
+        }
+
+        // VoiceOver announcement
+        let announcement = mode == .rippleOnly ? "Ping" : "Cursor centered"
+        NSAccessibility.post(
+            element: NSApp as Any,
+            notification: .announcementRequested,
+            userInfo: [
+                .announcement: announcement,
+                .priority: NSAccessibilityPriorityLevel.high.rawValue,
+            ]
+        )
     }
 }

@@ -60,4 +60,11 @@ class OverlayWindowController: NSWindowController {
     func fadeIn() {
         overlayView.fadeIn()
     }
+
+    func playRipple(at globalPosition: NSPoint) {
+        guard let screen = window?.screen else { return }
+        guard screen.frame.contains(globalPosition) else { return }
+        let localPosition = ScreenUtilities.globalToLocal(globalPosition, in: screen)
+        overlayView.playRipple(at: localPosition)
+    }
 }
