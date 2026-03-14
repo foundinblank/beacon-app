@@ -6,8 +6,7 @@ struct BeaconApp: App {
 
     var body: some Scene {
         Settings {
-            Text("Beacon Settings")
-                .frame(width: 300, height: 200)
+            SettingsView()
         }
     }
 }
