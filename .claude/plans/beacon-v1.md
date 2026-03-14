@@ -8,11 +8,11 @@ People with visual impairments struggle to track the mouse cursor on macOS. Exis
 
 ## Tech Stack
 
-- **Swift** — native macOS language, direct access to Apple APIs
+- **Swift 6** — strict concurrency, all UI types annotated `@MainActor`
 - **AppKit** — for overlay window management (SwiftUI cannot create click-through transparent windows)
-- **SwiftUI** — for the settings UI panel
+- **SwiftUI** — for the settings UI panel and `MenuBarExtra`
 - **Core Animation (CAShapeLayer)** — for GPU-accelerated smooth crosshair rendering (move layers instead of redrawing)
-- **CGEventTap** — for low-latency mouse tracking (smoother than NSEvent global monitors)
+- **NSEvent monitors** — global + local monitors for mouse tracking (CGEventTap had issues when backgrounded; revisit if latency becomes noticeable)
 - **Carbon RegisterEventHotKey** — for global hotkey without accessibility permission complexity
 - **Target**: macOS 14+ (Sonoma)
 
