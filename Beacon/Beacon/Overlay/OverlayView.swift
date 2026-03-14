@@ -5,6 +5,7 @@ import QuartzCore
 class OverlayView: NSView {
     private let spotlightRenderer = SpotlightRenderer()
     private let crosshairRenderer = CrosshairRenderer()
+    private let rippleManager = RippleAnimationManager()
 
     override init(frame: NSRect) {
         super.init(frame: frame)
@@ -45,5 +46,10 @@ class OverlayView: NSView {
         guard let layer = layer, layer.opacity != 1 else { return }
         layer.removeAnimation(forKey: "fadeOut")
         layer.opacity = 1
+    }
+
+    func playRipple(at position: NSPoint) {
+        guard let layer = self.layer else { return }
+        rippleManager.play(at: position, in: layer)
     }
 }
