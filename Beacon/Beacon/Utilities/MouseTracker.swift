@@ -16,14 +16,18 @@ class MouseTracker {
     func start() {
         let events: NSEvent.EventTypeMask = [.mouseMoved, .leftMouseDragged, .rightMouseDragged, .otherMouseDragged]
 
-        // Fires when another app is active
-        globalMonitor = NSEvent.addGlobalMonitorForEvents(matching: events) { [weak self] event in
-            self?.callback(NSEvent.mouseLocation)
+        // Fires when another app is active (main thread delivery per Apple docs)
+        globalMonitor = NSEvent.addGlobalMonitorForEvents(matching: events) { [weak self] _ in
+            MainActor.assumeIsolated {
+                self?.callback(NSEvent.mouseLocation)
+            }
         }
 
-        // Fires when Beacon itself is active
+        // Fires when Beacon itself is active (main thread delivery)
         localMonitor = NSEvent.addLocalMonitorForEvents(matching: events) { [weak self] event in
-            self?.callback(NSEvent.mouseLocation)
+            MainActor.assumeIsolated {
+                self?.callback(NSEvent.mouseLocation)
+            }
             return event
         }
 

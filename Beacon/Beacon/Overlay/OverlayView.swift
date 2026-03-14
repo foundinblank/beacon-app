@@ -1,6 +1,7 @@
 import AppKit
 import QuartzCore
 
+@MainActor
 class OverlayView: NSView {
     private let crosshairRenderer = CrosshairRenderer()
 

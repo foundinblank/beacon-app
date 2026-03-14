@@ -9,6 +9,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private let defaults = UserDefaults.standard
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        defaults.register(defaults: [
+            SettingsKeys.crosshairColor: SettingsDefaults.crosshairColor,
+            SettingsKeys.crosshairThickness: SettingsDefaults.crosshairThickness,
+            SettingsKeys.crosshairLineStyle: SettingsDefaults.crosshairLineStyle,
+            SettingsKeys.crosshairDashLength: SettingsDefaults.crosshairDashLength,
+            SettingsKeys.crosshairGapLength: SettingsDefaults.crosshairGapLength,
+            SettingsKeys.fadeTimeout: SettingsDefaults.fadeTimeout,
+        ])
+
         buildOverlays()
 
         NotificationCenter.default.addObserver(

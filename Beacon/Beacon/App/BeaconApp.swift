@@ -5,7 +5,7 @@ private struct MenuBarMenuContent: View {
 
     var body: some View {
         Button("Settings...") {
-            NSApp.activate(ignoringOtherApps: true)
+            NSApp.activate()
             openSettings()
         }
         .keyboardShortcut(",")

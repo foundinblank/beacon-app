@@ -1,5 +1,6 @@
 import AppKit
 
+@MainActor
 private class OverlayPanel: NSPanel {
     override var canBecomeKey: Bool { false }
     override var canBecomeMain: Bool { false }
@@ -26,7 +27,7 @@ class OverlayWindowController: NSWindowController {
         window.hidesOnDeactivate = false
         window.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary, .stationary]
 
-        let view = OverlayView(frame: screen.frame)
+        let view = OverlayView(frame: NSRect(origin: .zero, size: screen.frame.size))
         window.contentView = view
         self.overlayView = view
         self.ownedScreen = screen
