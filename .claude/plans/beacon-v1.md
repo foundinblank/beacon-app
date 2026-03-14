@@ -16,6 +16,15 @@ People with visual impairments struggle to track the mouse cursor on macOS. Exis
 - **Carbon RegisterEventHotKey** — for global hotkey without accessibility permission complexity
 - **Target**: macOS 14+ (Sonoma)
 
+## Available Skills
+
+The following Claude Code skills are available for use when working on this project:
+
+- **macos-app-design** (project) — macOS application design patterns, menu bar structure, keyboard shortcuts, multi-window behavior
+- **macos-development** (project) — macOS development guidance including Swift 6+, SwiftUI, SwiftData, architecture, AppKit bridging
+- **swiftui-expert-skill** (user) — SwiftUI best practices for state management, view composition, performance, macOS-specific APIs
+- **macos** (user) — macOS platform-specific development with menu bar apps, window management, AppKit integration
+
 ## How It Works
 
 A fullscreen, borderless, transparent `NSWindow` floats on top of all content with `ignoresMouseEvents = true` (all clicks pass through). This is the standard macOS overlay pattern used by Apple's own accessibility features, CrossOver, and all crosshair apps. One overlay window per connected monitor, automatically managed on connect/disconnect.

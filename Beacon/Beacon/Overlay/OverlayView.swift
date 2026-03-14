@@ -20,4 +20,10 @@ class OverlayView: NSView {
     func updateCursorPosition(_ position: NSPoint) {
         crosshairRenderer.updatePosition(position, bounds: bounds)
     }
+
+    func setVisible(_ visible: Bool) {
+        let newAlpha: Float = visible ? 1 : 0
+        guard layer?.opacity != newAlpha else { return }
+        layer?.opacity = newAlpha
+    }
 }

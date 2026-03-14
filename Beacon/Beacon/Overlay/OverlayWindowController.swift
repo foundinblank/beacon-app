@@ -40,9 +40,15 @@ class OverlayWindowController: NSWindowController {
     }
 
     func updateCursorPosition(_ globalPosition: NSPoint) {
-        guard let window = window else { return }
-        let screen = window.screen ?? ownedScreen
-        let localPosition = ScreenUtilities.globalToLocal(globalPosition, in: screen)
-        overlayView.updateCursorPosition(localPosition)
+        let screen = ownedScreen
+        let cursorOnThisScreen = screen.frame.contains(globalPosition)
+
+        if cursorOnThisScreen {
+            overlayView.setVisible(true)
+            let localPosition = ScreenUtilities.globalToLocal(globalPosition, in: screen)
+            overlayView.updateCursorPosition(localPosition)
+        } else {
+            overlayView.setVisible(false)
+        }
     }
 }

@@ -13,7 +13,7 @@ Full specification: `.claude/plans/beacon-v1.md`
 - **Swift 6** with strict concurrency — all UI types annotated `@MainActor`
 - **AppKit** (overlay windows) + **SwiftUI** (settings panel only)
 - **Core Animation** (`CAShapeLayer`) for GPU-accelerated rendering
-- **CGEventTap** for low-latency mouse tracking
+- **NSEvent monitors** (global + local) for mouse tracking
 - **Carbon `RegisterEventHotKey`** for global hotkeys
 - **UserDefaults / @AppStorage** for settings persistence
 
@@ -31,7 +31,7 @@ xcodebuild -project Beacon/Beacon.xcodeproj -scheme Beacon build
 ## Architecture
 
 ### Overlay System
-Fullscreen borderless transparent `NSWindow` per monitor with `ignoresMouseEvents = true` (clicks pass through). Each window hosts an `NSView` with `CAShapeLayer` objects for crosshair lines, spotlight circle, and reading guide regions. Layer positions are updated via `CGEventTap` callback — no per-frame redraw.
+Fullscreen borderless transparent `NSPanel` (subclass with `canBecomeKey = false`) per monitor with `ignoresMouseEvents = true` (clicks pass through). Each window hosts an `NSView` with `CAShapeLayer` objects for crosshair lines, spotlight circle, and reading guide regions. Layer positions are updated via `NSEvent` monitor callback — no per-frame redraw. Only the overlay on the screen containing the cursor renders; others hide via layer opacity.
 
 ### Settings Bridge (AppKit ↔ SwiftUI)
 SwiftUI views use `@AppStorage("key")`. AppKit overlay reads `UserDefaults.standard` with the same keys. No shared `ObservableObject` — both sides read/write the same `UserDefaults` keys directly. Colors stored as hex strings, converted via `NSColor` extension.
@@ -52,7 +52,7 @@ All conversions go through `ScreenUtilities`. Always use it — never convert co
 
 ## Permissions
 
-`CGEventTap` requires **Input Monitoring** permission (System Settings > Privacy & Security > Input Monitoring). The app must detect if not granted and prompt the user on first launch.
+Currently using `NSEvent` monitors which don't require Input Monitoring permission. If we switch back to `CGEventTap` for lower latency, it will require **Input Monitoring** permission (System Settings > Privacy & Security > Input Monitoring) and the app must detect if not granted and prompt the user on first launch.
 
 ## Verification Checklist
 
