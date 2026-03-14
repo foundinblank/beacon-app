@@ -4,6 +4,7 @@ import AppKit
 class AppDelegate: NSObject, NSApplicationDelegate {
     private var overlayControllers: [OverlayWindowController] = []
     private var mouseTracker: MouseTracker?
+    private var capsLockDetector: CapsLockDetector?
     private var fadeTimer: Timer?
     private var isFadedOut = false
     private let defaults = UserDefaults.standard
@@ -31,10 +32,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self?.handleMouseMove(position)
         }
         mouseTracker?.start()
+
+        capsLockDetector = CapsLockDetector { [weak self] in
+            NSLog("Beacon: Caps Lock double-tap detected!")
+        }
+        capsLockDetector?.start()
     }
 
     func applicationWillTerminate(_ notification: Notification) {
         mouseTracker?.stop()
+        capsLockDetector?.stop()
         fadeTimer?.invalidate()
     }
 

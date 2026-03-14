@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A10000010000000000000030 /* CapsLockDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000030 /* CapsLockDetector.swift */; };
+		A10000010000000000000031 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A10000020000000000000031 /* IOKit.framework */; };
 		A10000010000000000000001 /* BeaconApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000001 /* BeaconApp.swift */; };
 		A10000010000000000000002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000002 /* AppDelegate.swift */; };
 		A10000010000000000000003 /* OverlayWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000003 /* OverlayWindowController.swift */; };
@@ -44,6 +46,8 @@
 		A10000020000000000000020 /* SpotlightRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightRenderer.swift; sourceTree = "<group>"; };
 		A10000020000000000000021 /* SpotlightSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightSettingsSection.swift; sourceTree = "<group>"; };
 		A10000020000000000000022 /* SliderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderRow.swift; sourceTree = "<group>"; };
+		A10000020000000000000030 /* CapsLockDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsLockDetector.swift; sourceTree = "<group>"; };
+		A10000020000000000000031 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		A10000030000000000000001 /* Beacon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beacon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -52,17 +56,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A10000010000000000000031 /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A10000050000000000000010 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A10000020000000000000031 /* IOKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A10000050000000000000001 = {
 			isa = PBXGroup;
 			children = (
 				A10000050000000000000002 /* Beacon */,
 				A10000050000000000000009 /* Products */,
+				A10000050000000000000010 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +115,7 @@
 		A10000050000000000000005 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				A10000020000000000000030 /* CapsLockDetector.swift */,
 				A10000020000000000000006 /* MouseTracker.swift */,
 				A10000020000000000000012 /* NSColor+Hex.swift */,
 				A10000020000000000000007 /* ScreenUtilities.swift */,
@@ -223,6 +238,7 @@
 				A10000010000000000000020 /* SpotlightRenderer.swift in Sources */,
 				A10000010000000000000021 /* SpotlightSettingsSection.swift in Sources */,
 				A10000010000000000000022 /* SliderRow.swift in Sources */,
+				A10000010000000000000030 /* CapsLockDetector.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
