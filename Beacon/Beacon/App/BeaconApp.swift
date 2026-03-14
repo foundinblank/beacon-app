@@ -6,6 +6,16 @@ private struct MenuBarMenuContent: View {
 
     var body: some View {
         Toggle("Spotlight", isOn: $spotlightEnabled)
+            .onChange(of: spotlightEnabled) { _, newValue in
+                NSAccessibility.post(
+                    element: NSApp as Any,
+                    notification: .announcementRequested,
+                    userInfo: [
+                        .announcement: "Spotlight \(newValue ? "on" : "off")",
+                        .priority: NSAccessibilityPriorityLevel.high.rawValue,
+                    ]
+                )
+            }
         Divider()
         Button("Settings...") {
             NSApp.activate()

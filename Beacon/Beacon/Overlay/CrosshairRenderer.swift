@@ -11,7 +11,8 @@ class CrosshairRenderer {
     private let defaults = UserDefaults.standard
     private nonisolated(unsafe) var settingsObserver: NSObjectProtocol?
 
-    private let defaultGap: CGFloat = 20.0
+    private static let defaultGap: CGFloat = 20.0
+    private var gap: CGFloat = CrosshairRenderer.defaultGap
     private var edgeGap: CGFloat = 0.0
 
     private var lastDrawnPosition: NSPoint = .zero
@@ -60,17 +61,6 @@ class CrosshairRenderer {
 
         let x = position.x
         let y = position.y
-
-        // When spotlight is enabled, stop crosshair lines at the spotlight circle edge
-        let spotlightEnabled = defaults.object(forKey: SettingsKeys.spotlightEnabled) as? Bool
-            ?? SettingsDefaults.spotlightEnabled
-        let gap: CGFloat
-        if spotlightEnabled {
-            gap = CGFloat(defaults.object(forKey: SettingsKeys.spotlightRadius) as? Double
-                ?? SettingsDefaults.spotlightRadius)
-        } else {
-            gap = defaultGap
-        }
 
         // All lines draw outward from cursor so dash patterns anchor at the cursor
 
@@ -146,7 +136,17 @@ class CrosshairRenderer {
             line.lineCap = lineCap
         }
 
-        // Reset position cache so crosshair redraws with updated spotlight gap
+        // Update gap based on spotlight state
+        let spotlightEnabled = defaults.object(forKey: SettingsKeys.spotlightEnabled) as? Bool
+            ?? SettingsDefaults.spotlightEnabled
+        if spotlightEnabled {
+            gap = CGFloat(defaults.object(forKey: SettingsKeys.spotlightRadius) as? Double
+                ?? SettingsDefaults.spotlightRadius)
+        } else {
+            gap = Self.defaultGap
+        }
+
+        // Reset position cache so crosshair redraws with updated settings
         lastDrawnPosition = .zero
         lastDrawnBounds = .zero
     }

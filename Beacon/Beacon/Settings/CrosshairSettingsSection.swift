@@ -48,7 +48,7 @@ struct CrosshairSettingsSection: View {
                     .accessibilityLabel("Custom color")
             }
 
-            sliderRow("Line Thickness", value: $thickness, range: 0.5...10, step: 0.5) {
+            SliderRow(label: "Line Thickness", value: $thickness, range: 0.5...10, step: 0.5) {
                 String(format: "%.1f px", $0)
             }
 
@@ -59,32 +59,17 @@ struct CrosshairSettingsSection: View {
             }
 
             if lineStyle == LineStyle.dashed.rawValue {
-                sliderRow("Dash Length", value: $dashLength, range: 1...20, step: 1) {
+                SliderRow(label: "Dash Length", value: $dashLength, range: 1...20, step: 1) {
                     "\(Int($0)) px"
                 }
             }
 
             if (LineStyle(rawValue: lineStyle) ?? .solid).hasDashParameters {
-                sliderRow("Spacing", value: $gapLength, range: 1...20, step: 1) {
+                SliderRow(label: "Spacing", value: $gapLength, range: 1...20, step: 1) {
                     "\(Int($0)) px"
                 }
             }
         }
     }
 
-    private func sliderRow(
-        _ label: String,
-        value: Binding<Double>,
-        range: ClosedRange<Double>,
-        step: Double,
-        format: @escaping (Double) -> String
-    ) -> some View {
-        HStack {
-            Text(label)
-            Slider(value: value, in: range, step: step)
-            Text(format(value.wrappedValue))
-                .monospacedDigit()
-                .frame(width: 50, alignment: .trailing)
-        }
-    }
 }

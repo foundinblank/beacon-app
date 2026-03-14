@@ -18,7 +18,6 @@ class SpotlightRenderer {
 
     func setup(in layer: CALayer, bounds: NSRect) {
         dimLayer.fillRule = .evenOdd
-        dimLayer.fillColor = NSColor.black.cgColor
         dimLayer.strokeColor = nil
         dimLayer.actions = [
             "path": NSNull(), "opacity": NSNull(), "hidden": NSNull(),
@@ -58,8 +57,7 @@ class SpotlightRenderer {
         lastDrawnPosition = position
         lastDrawnBounds = bounds
 
-        let radius = CGFloat(defaults.object(forKey: SettingsKeys.spotlightRadius) as? Double
-            ?? SettingsDefaults.spotlightRadius)
+        let radius = lastRadius
 
         let ellipseRect = CGRect(
             x: position.x - radius,
@@ -99,7 +97,7 @@ class SpotlightRenderer {
         lastColorHex = colorHex
 
         dimLayer.isHidden = !enabled
-        dimLayer.opacity = Float(dimOpacity)
+        dimLayer.fillColor = NSColor.black.withAlphaComponent(dimOpacity).cgColor
 
         borderLayer.isHidden = !enabled || borderWidth <= 0
         borderLayer.lineWidth = borderWidth
