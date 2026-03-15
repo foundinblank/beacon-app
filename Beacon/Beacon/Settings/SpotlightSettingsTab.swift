@@ -17,17 +17,17 @@ struct SpotlightSettingsTab: View {
                     "\(Int($0)) px"
                 }
 
-                SliderRow(label: "Dim opacity", value: $dimOpacity, range: 0.0...1.0, step: 0.05) {
+                SliderRow(label: "Background dimming", value: $dimOpacity, range: 0.0...1.0, step: 0.05) {
                     String(format: "%.0f%%", $0 * 100)
                 }
 
-                SliderRow(label: "Border width", value: $borderWidth, range: 0...10, step: 0.5) {
+                SliderRow(label: "Border thickness", value: $borderWidth, range: 0...10, step: 0.5) {
                     $0 == 0 ? "Off" : String(format: "%.1f px", $0)
                 }
 
                 if syncColor {
                     ColorPickerRow(label: "Border color", colorHex: $borderColorHex)
-                        .disabled(true)
+                        .disabled(syncColor)
                     Text("Color is set in the General tab")
                         .font(.caption)
                         .foregroundStyle(.secondary)

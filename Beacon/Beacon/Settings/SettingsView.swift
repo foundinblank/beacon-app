@@ -6,17 +6,17 @@ struct SettingsView: View {
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            CrosshairSettingsTab()
-                .tabItem { Text("Crosshair") }
-                .tag(0)
-            SpotlightSettingsTab()
-                .tabItem { Text("Spotlight") }
-                .tag(1)
-            PingSettingsTab()
-                .tabItem { Text("Ping") }
-                .tag(2)
             GeneralSettingsTab()
-                .tabItem { Text("General") }
+                .tabItem { Label("General", systemImage: "gearshape") }
+                .tag(0)
+            CrosshairSettingsTab()
+                .tabItem { Label("Crosshair", systemImage: "scope") }
+                .tag(1)
+            SpotlightSettingsTab()
+                .tabItem { Label("Spotlight", systemImage: "circle.circle") }
+                .tag(2)
+            PingSettingsTab()
+                .tabItem { Label("Ping", systemImage: "dot.radiowaves.left.and.right") }
                 .tag(3)
         }
         .frame(minWidth: 400, idealWidth: settingsWidth, minHeight: 300, idealHeight: 400)

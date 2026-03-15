@@ -3,6 +3,7 @@ import SwiftUI
 struct ColorPickerRow: View {
     let label: String
     @Binding var colorHex: String
+    @Environment(\.isEnabled) private var isEnabled
 
     private var selectedColor: Binding<Color> {
         Binding(
@@ -36,6 +37,8 @@ struct ColorPickerRow: View {
                         .fill(preset.color)
                         .stroke(isSelected ? Color.accentColor : Color.gray.opacity(0.3), lineWidth: 2)
                         .frame(width: 18, height: 18)
+                        .saturation(isEnabled ? 1 : 0)
+                        .opacity(isEnabled ? 1 : 0.4)
                 }
                 .buttonStyle(.plain)
                 .accessibilityLabel(preset.name)
@@ -45,6 +48,8 @@ struct ColorPickerRow: View {
             ColorPicker("", selection: selectedColor, supportsOpacity: true)
                 .labelsHidden()
                 .accessibilityLabel("Custom \(label.lowercased())")
+                .saturation(isEnabled ? 1 : 0)
+                .opacity(isEnabled ? 1 : 0.4)
         }
     }
 }

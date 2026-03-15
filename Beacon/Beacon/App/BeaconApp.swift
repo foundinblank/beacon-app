@@ -39,8 +39,17 @@ private struct MenuBarMenuContent: View {
         .keyboardShortcut("/", modifiers: [.command, .shift])
         Divider()
         Button("Settings...") {
-            NSApp.activate()
             openSettings()
+            NSApp.activate(ignoringOtherApps: true)
+            // Settings window may already exist but be behind other windows;
+            // find it specifically and bring it forward.
+            DispatchQueue.main.async {
+                for window in NSApp.windows
+                where window.canBecomeKey && !(window is NSPanel) {
+                    window.makeKeyAndOrderFront(nil)
+                }
+                NSApp.activate(ignoringOtherApps: true)
+            }
         }
         .keyboardShortcut(",")
         Divider()

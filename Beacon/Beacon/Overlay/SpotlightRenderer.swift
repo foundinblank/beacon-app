@@ -85,12 +85,8 @@ class SpotlightRenderer {
             ?? SettingsDefaults.spotlightDimOpacity)
         let borderWidth = CGFloat(defaults.object(forKey: SettingsKeys.spotlightBorderWidth) as? Double
             ?? SettingsDefaults.spotlightBorderWidth)
-        let colorHex: String
-        if defaults.object(forKey: SettingsKeys.syncColor) as? Bool ?? SettingsDefaults.syncColor {
-            colorHex = defaults.string(forKey: SettingsKeys.masterColor) ?? SettingsDefaults.masterColor
-        } else {
-            colorHex = defaults.string(forKey: SettingsKeys.spotlightBorderColor) ?? SettingsDefaults.spotlightBorderColor
-        }
+        let colorHex = SettingsDefaults.resolvedColorHex(
+            featureKey: SettingsKeys.spotlightBorderColor, featureDefault: SettingsDefaults.spotlightBorderColor)
 
         if enabled == lastEnabled && radius == lastRadius &&
             dimOpacity == lastDimOpacity && borderWidth == lastBorderWidth &&

@@ -32,6 +32,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             SettingsKeys.spotlightRadius: SettingsDefaults.spotlightRadius,
             SettingsKeys.spotlightDimOpacity: SettingsDefaults.spotlightDimOpacity,
             SettingsKeys.spotlightBorderWidth: SettingsDefaults.spotlightBorderWidth,
+            SettingsKeys.pingEnabled: SettingsDefaults.pingEnabled,
             SettingsKeys.pingMode: SettingsDefaults.pingMode,
             SettingsKeys.rippleColor: SettingsDefaults.rippleColor,
             SettingsKeys.spotlightBorderColor: SettingsDefaults.spotlightBorderColor,
@@ -138,6 +139,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func performPing() {
         log.debug("performPing() called")
+        let pingEnabled = defaults.object(forKey: SettingsKeys.pingEnabled) as? Bool ?? SettingsDefaults.pingEnabled
+        guard pingEnabled else {
+            log.debug("ping disabled, ignoring")
+            return
+        }
         let modeRaw = defaults.string(forKey: SettingsKeys.pingMode) ?? SettingsDefaults.pingMode
         let mode = PingMode(rawValue: modeRaw) ?? .centerAndRipple
         log.debug("ping mode = \(mode.rawValue)")
