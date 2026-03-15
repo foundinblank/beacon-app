@@ -7,7 +7,7 @@ private let log = Logger(subsystem: "com.beacon.app", category: "ping")
 class AppDelegate: NSObject, NSApplicationDelegate {
     private var overlayControllers: [OverlayWindowController] = []
     private var mouseTracker: MouseTracker?
-    private var capsLockDetector: CapsLockDetector?
+    private var hotkeyManager: GlobalHotkeyManager?
     private var fadeTimer: Timer?
     private var isFadedOut = false
     private let defaults = UserDefaults.standard
@@ -26,6 +26,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             SettingsKeys.spotlightBorderWidth: SettingsDefaults.spotlightBorderWidth,
             SettingsKeys.pingMode: SettingsDefaults.pingMode,
             SettingsKeys.rippleColor: SettingsDefaults.rippleColor,
+            SettingsKeys.spotlightBorderColor: SettingsDefaults.spotlightBorderColor,
+            SettingsKeys.syncColor: SettingsDefaults.syncColor,
         ])
 
         buildOverlays()
@@ -42,15 +44,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         mouseTracker?.start()
 
-        capsLockDetector = CapsLockDetector { [weak self] in
+        hotkeyManager = GlobalHotkeyManager { [weak self] in
             self?.performPing()
         }
-        capsLockDetector?.start()
+        hotkeyManager?.start()
     }
 
     func applicationWillTerminate(_ notification: Notification) {
         mouseTracker?.stop()
-        capsLockDetector?.stop()
+        hotkeyManager?.stop()
         fadeTimer?.invalidate()
     }
 

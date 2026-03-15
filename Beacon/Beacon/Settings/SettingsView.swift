@@ -9,6 +9,8 @@ struct SettingsView: View {
             GeneralSettingsSection()
         }
         .formStyle(.grouped)
+        .scrollBounceBehavior(.basedOnSize)
+        .fixedSize(horizontal: false, vertical: true)
         .frame(width: 450)
     }
 }

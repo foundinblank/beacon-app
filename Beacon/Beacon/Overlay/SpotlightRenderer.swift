@@ -85,7 +85,7 @@ class SpotlightRenderer {
             ?? SettingsDefaults.spotlightDimOpacity)
         let borderWidth = CGFloat(defaults.object(forKey: SettingsKeys.spotlightBorderWidth) as? Double
             ?? SettingsDefaults.spotlightBorderWidth)
-        let colorHex = defaults.string(forKey: SettingsKeys.crosshairColor) ?? SettingsDefaults.crosshairColor
+        let colorHex = defaults.string(forKey: SettingsKeys.spotlightBorderColor) ?? SettingsDefaults.spotlightBorderColor
 
         if enabled == lastEnabled && radius == lastRadius &&
             dimOpacity == lastDimOpacity && borderWidth == lastBorderWidth &&
@@ -101,7 +101,7 @@ class SpotlightRenderer {
 
         borderLayer.isHidden = !enabled || borderWidth <= 0
         borderLayer.lineWidth = borderWidth
-        borderLayer.strokeColor = (NSColor(hex: colorHex) ?? SettingsDefaults.crosshairNSColor).cgColor
+        borderLayer.strokeColor = (NSColor(hex: colorHex) ?? SettingsDefaults.spotlightBorderNSColor).cgColor
 
         if enabled {
             lastDrawnPosition = .zero
