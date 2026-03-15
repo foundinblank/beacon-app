@@ -57,6 +57,7 @@ class MouseTracker {
             }
         }
         RunLoop.main.add(frameTimer, forMode: .common)
+        RunLoop.main.add(frameTimer, forMode: .eventTracking)
         renderTimer = frameTimer
     }
 
