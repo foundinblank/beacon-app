@@ -1,5 +1,8 @@
 import AppKit
+import os
 import QuartzCore
+
+private let log = Logger(subsystem: "com.beacon.app", category: "ripple")
 
 @MainActor
 class RippleAnimationManager: NSObject {
@@ -13,6 +16,7 @@ class RippleAnimationManager: NSObject {
     private let defaults = UserDefaults.standard
 
     func play(at point: NSPoint, in layer: CALayer) {
+        log.debug("play at \(point.debugDescription), layer opacity=\(layer.opacity), bounds=\(layer.bounds.debugDescription)")
         // Remove any in-progress rings
         cleanup()
 

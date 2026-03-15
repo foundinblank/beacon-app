@@ -1,6 +1,9 @@
 import AppKit
 import IOKit
 import IOKit.hid
+import os
+
+private let log = Logger(subsystem: "com.beacon.app", category: "capslock")
 
 @MainActor
 class CapsLockDetector {
@@ -8,14 +11,15 @@ class CapsLockDetector {
 
     private let callback: PingCallback
     private let threshold: TimeInterval = 0.4
-    private var lastCapsOnTime: TimeInterval = 0
-    private var capsWasOn = false
+    private var lastTapTime: TimeInterval = 0
+    private var lastCapsState: Bool = false
+    private var resetting = false
     private nonisolated(unsafe) var globalMonitor: Any?
     private nonisolated(unsafe) var localMonitor: Any?
 
     init(callback: @escaping PingCallback) {
         self.callback = callback
-        self.capsWasOn = NSEvent.modifierFlags.contains(.capsLock)
+        self.lastCapsState = NSEvent.modifierFlags.contains(.capsLock)
     }
 
     func start() {
@@ -46,20 +50,29 @@ class CapsLockDetector {
     private func handleFlagsChanged(_ event: NSEvent) {
         let capsIsOn = event.modifierFlags.contains(.capsLock)
 
-        // Only count flag-on transitions (capsWasOff -> capsIsOn)
-        if capsIsOn && !capsWasOn {
-            let now = ProcessInfo.processInfo.systemUptime
-            if now - lastCapsOnTime < threshold {
-                // Double-tap detected
-                lastCapsOnTime = 0 // Reset to prevent triple-tap re-trigger
-                resetCapsLock()
-                callback()
-            } else {
-                lastCapsOnTime = now
-            }
-        }
+        // Ignore if caps lock state didn't actually change (some other modifier fired)
+        guard capsIsOn != lastCapsState else { return }
+        lastCapsState = capsIsOn
 
-        capsWasOn = capsIsOn
+        // Ignore synthetic events from our own resetCapsLock()
+        guard !resetting else { return }
+
+        // Each physical press toggles state (on→off or off→on).
+        // Count any toggle as a tap for double-tap detection.
+        let now = ProcessInfo.processInfo.systemUptime
+        let elapsed = now - lastTapTime
+        log.debug("caps tap: capsIsOn=\(capsIsOn), elapsed=\(elapsed, format: .fixed(precision: 3))s")
+
+        if elapsed < threshold && lastTapTime > 0 {
+            log.debug("double-tap detected, firing callback")
+            lastTapTime = 0 // Reset to prevent triple-tap re-trigger
+            resetting = true
+            resetCapsLock()
+            resetting = false
+            callback()
+        } else {
+            lastTapTime = now
+        }
     }
 
     private func resetCapsLock() {

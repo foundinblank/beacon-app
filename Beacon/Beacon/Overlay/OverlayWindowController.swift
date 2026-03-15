@@ -1,4 +1,7 @@
 import AppKit
+import os
+
+private let log = Logger(subsystem: "com.beacon.app", category: "overlay")
 
 @MainActor
 private class OverlayPanel: NSPanel {
@@ -62,8 +65,10 @@ class OverlayWindowController: NSWindowController {
     }
 
     func playRipple(at globalPosition: NSPoint) {
+        log.debug("playRipple global=\(globalPosition.debugDescription), screen=\(self.ownedScreen.frame.debugDescription), contains=\(self.ownedScreen.frame.contains(globalPosition))")
         guard ownedScreen.frame.contains(globalPosition) else { return }
         let localPosition = ScreenUtilities.globalToLocal(globalPosition, in: ownedScreen)
+        log.debug("playing ripple at local=\(localPosition.debugDescription)")
         overlayView.playRipple(at: localPosition)
     }
 }

@@ -1,4 +1,7 @@
 import AppKit
+import os
+
+private let log = Logger(subsystem: "com.beacon.app", category: "ping")
 
 @MainActor
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -110,8 +113,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func performPing() {
+        log.debug("performPing() called")
         let modeRaw = defaults.string(forKey: SettingsKeys.pingMode) ?? SettingsDefaults.pingMode
         let mode = PingMode(rawValue: modeRaw) ?? .centerAndRipple
+        log.debug("ping mode = \(mode.rawValue)")
 
         // Determine current screen
         let mouseLocation = NSEvent.mouseLocation
@@ -138,7 +143,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let cgCenter = ScreenUtilities.screenCenter(of: currentScreen)
             let result = CGWarpMouseCursorPosition(cgCenter)
             if result != .success {
-                NSLog("Beacon: CGWarpMouseCursorPosition failed with error \(result.rawValue)")
+                log.error("CGWarpMouseCursorPosition failed with error \(result.rawValue)")
             }
             targetAppKitPosition = NSPoint(x: currentScreen.frame.midX, y: currentScreen.frame.midY)
 

@@ -1,8 +1,12 @@
+import os
 import SwiftUI
+
+private let log = Logger(subsystem: "com.beacon.app", category: "menu")
 
 private struct MenuBarMenuContent: View {
     @Environment(\.openSettings) private var openSettings
     @AppStorage(SettingsKeys.spotlightEnabled) private var spotlightEnabled = SettingsDefaults.spotlightEnabled
+    let appDelegate: AppDelegate
 
     var body: some View {
         Toggle("Spotlight", isOn: $spotlightEnabled)
@@ -17,7 +21,8 @@ private struct MenuBarMenuContent: View {
                 )
             }
         Button("Ping") {
-            (NSApp.delegate as? AppDelegate)?.performPing()
+            log.debug("Ping button tapped")
+            appDelegate.performPing()
         }
         Divider()
         Button("Settings...") {
@@ -42,7 +47,7 @@ struct BeaconApp: App {
             SettingsView()
         }
         MenuBarExtra("Beacon", systemImage: "target") {
-            MenuBarMenuContent()
+            MenuBarMenuContent(appDelegate: appDelegate)
         }
     }
 }
