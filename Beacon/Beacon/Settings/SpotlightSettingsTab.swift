@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct SpotlightSettingsSection: View {
+struct SpotlightSettingsTab: View {
     @AppStorage(SettingsKeys.spotlightEnabled) private var enabled = SettingsDefaults.spotlightEnabled
     @AppStorage(SettingsKeys.spotlightRadius) private var radius = SettingsDefaults.spotlightRadius
     @AppStorage(SettingsKeys.spotlightDimOpacity) private var dimOpacity = SettingsDefaults.spotlightDimOpacity
@@ -9,10 +9,10 @@ struct SpotlightSettingsSection: View {
     @AppStorage(SettingsKeys.syncColor) private var syncColor = SettingsDefaults.syncColor
 
     var body: some View {
-        Section("Spotlight") {
-            Toggle("Enable spotlight", isOn: $enabled)
+        Form {
+            Section("Spotlight") {
+                Toggle("Enable Spotlight", isOn: $enabled)
 
-            if enabled {
                 SliderRow(label: "Radius", value: $radius, range: 25...300, step: 5) {
                     "\(Int($0)) px"
                 }
@@ -25,11 +25,18 @@ struct SpotlightSettingsSection: View {
                     $0 == 0 ? "Off" : String(format: "%.1f px", $0)
                 }
 
-                if !syncColor && borderWidth > 0 {
+                if syncColor {
+                    ColorPickerRow(label: "Border color", colorHex: $borderColorHex)
+                        .disabled(true)
+                    Text("Color is set in the General tab")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                } else if borderWidth > 0 {
                     ColorPickerRow(label: "Border color", colorHex: $borderColorHex)
                 }
             }
         }
+        .formStyle(.grouped)
+        .scrollBounceBehavior(.basedOnSize)
     }
-
 }

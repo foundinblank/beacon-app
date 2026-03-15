@@ -18,13 +18,13 @@
 		A10000010000000000000008 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000008 /* Assets.xcassets */; };
 		A10000010000000000000010 /* NSColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000012 /* NSColor+Hex.swift */; };
 		A10000010000000000000011 /* SettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000013 /* SettingsKeys.swift */; };
-		A10000010000000000000012 /* CrosshairSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000014 /* CrosshairSettingsSection.swift */; };
+		A10000010000000000000012 /* CrosshairSettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000014 /* CrosshairSettingsTab.swift */; };
 		A10000010000000000000013 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000015 /* SettingsView.swift */; };
-		A10000010000000000000014 /* GeneralSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000016 /* GeneralSettingsSection.swift */; };
+		A10000010000000000000014 /* GeneralSettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000016 /* GeneralSettingsTab.swift */; };
 		A10000010000000000000020 /* SpotlightRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000020 /* SpotlightRenderer.swift */; };
-		A10000010000000000000021 /* SpotlightSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000021 /* SpotlightSettingsSection.swift */; };
+		A10000010000000000000021 /* SpotlightSettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000021 /* SpotlightSettingsTab.swift */; };
 		A10000010000000000000022 /* SliderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000022 /* SliderRow.swift */; };
-		A10000010000000000000040 /* PingSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000040 /* PingSettingsSection.swift */; };
+		A10000010000000000000040 /* PingSettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000040 /* PingSettingsTab.swift */; };
 		A10000010000000000000050 /* RippleAnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000050 /* RippleAnimationManager.swift */; };
 		A10000010000000000000060 /* ColorPickerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000060 /* ColorPickerRow.swift */; };
 /* End PBXBuildFile section */
@@ -42,13 +42,13 @@
 		A10000020000000000000010 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A10000020000000000000012 /* NSColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSColor+Hex.swift"; sourceTree = "<group>"; };
 		A10000020000000000000013 /* SettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsKeys.swift; sourceTree = "<group>"; };
-		A10000020000000000000014 /* CrosshairSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrosshairSettingsSection.swift; sourceTree = "<group>"; };
+		A10000020000000000000014 /* CrosshairSettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrosshairSettingsTab.swift; sourceTree = "<group>"; };
 		A10000020000000000000015 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		A10000020000000000000016 /* GeneralSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsSection.swift; sourceTree = "<group>"; };
+		A10000020000000000000016 /* GeneralSettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsTab.swift; sourceTree = "<group>"; };
 		A10000020000000000000020 /* SpotlightRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightRenderer.swift; sourceTree = "<group>"; };
-		A10000020000000000000021 /* SpotlightSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightSettingsSection.swift; sourceTree = "<group>"; };
+		A10000020000000000000021 /* SpotlightSettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightSettingsTab.swift; sourceTree = "<group>"; };
 		A10000020000000000000022 /* SliderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderRow.swift; sourceTree = "<group>"; };
-		A10000020000000000000040 /* PingSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingSettingsSection.swift; sourceTree = "<group>"; };
+		A10000020000000000000040 /* PingSettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingSettingsTab.swift; sourceTree = "<group>"; };
 		A10000020000000000000050 /* RippleAnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RippleAnimationManager.swift; sourceTree = "<group>"; };
 		A10000020000000000000060 /* ColorPickerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerRow.swift; sourceTree = "<group>"; };
 		A10000020000000000000070 /* GlobalHotkeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHotkeyManager.swift; sourceTree = "<group>"; };
@@ -140,13 +140,13 @@
 			isa = PBXGroup;
 			children = (
 				A10000020000000000000060 /* ColorPickerRow.swift */,
-				A10000020000000000000014 /* CrosshairSettingsSection.swift */,
-				A10000020000000000000016 /* GeneralSettingsSection.swift */,
-				A10000020000000000000040 /* PingSettingsSection.swift */,
+				A10000020000000000000014 /* CrosshairSettingsTab.swift */,
+				A10000020000000000000016 /* GeneralSettingsTab.swift */,
+				A10000020000000000000040 /* PingSettingsTab.swift */,
 				A10000020000000000000013 /* SettingsKeys.swift */,
 				A10000020000000000000015 /* SettingsView.swift */,
 				A10000020000000000000022 /* SliderRow.swift */,
-				A10000020000000000000021 /* SpotlightSettingsSection.swift */,
+				A10000020000000000000021 /* SpotlightSettingsTab.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -237,14 +237,14 @@
 				A10000010000000000000007 /* ScreenUtilities.swift in Sources */,
 				A10000010000000000000010 /* NSColor+Hex.swift in Sources */,
 				A10000010000000000000011 /* SettingsKeys.swift in Sources */,
-				A10000010000000000000012 /* CrosshairSettingsSection.swift in Sources */,
+				A10000010000000000000012 /* CrosshairSettingsTab.swift in Sources */,
 				A10000010000000000000013 /* SettingsView.swift in Sources */,
-				A10000010000000000000014 /* GeneralSettingsSection.swift in Sources */,
+				A10000010000000000000014 /* GeneralSettingsTab.swift in Sources */,
 				A10000010000000000000020 /* SpotlightRenderer.swift in Sources */,
-				A10000010000000000000021 /* SpotlightSettingsSection.swift in Sources */,
+				A10000010000000000000021 /* SpotlightSettingsTab.swift in Sources */,
 				A10000010000000000000022 /* SliderRow.swift in Sources */,
 				A10000010000000000000070 /* GlobalHotkeyManager.swift in Sources */,
-				A10000010000000000000040 /* PingSettingsSection.swift in Sources */,
+				A10000010000000000000040 /* PingSettingsTab.swift in Sources */,
 				A10000010000000000000050 /* RippleAnimationManager.swift in Sources */,
 				A10000010000000000000060 /* ColorPickerRow.swift in Sources */,
 			);
