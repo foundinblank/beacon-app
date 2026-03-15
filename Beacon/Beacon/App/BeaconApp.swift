@@ -5,10 +5,22 @@ private let log = Logger(subsystem: "com.beacon.app", category: "menu")
 
 private struct MenuBarMenuContent: View {
     @Environment(\.openSettings) private var openSettings
+    @AppStorage(SettingsKeys.crosshairEnabled) private var crosshairEnabled = SettingsDefaults.crosshairEnabled
     @AppStorage(SettingsKeys.spotlightEnabled) private var spotlightEnabled = SettingsDefaults.spotlightEnabled
     let appDelegate: AppDelegate
 
     var body: some View {
+        Toggle("Crosshair", isOn: $crosshairEnabled)
+            .onChange(of: crosshairEnabled) { _, newValue in
+                NSAccessibility.post(
+                    element: NSApp as Any,
+                    notification: .announcementRequested,
+                    userInfo: [
+                        .announcement: "Crosshair \(newValue ? "on" : "off")",
+                        .priority: NSAccessibilityPriorityLevel.high.rawValue,
+                    ]
+                )
+            }
         Toggle("Spotlight", isOn: $spotlightEnabled)
             .onChange(of: spotlightEnabled) { _, newValue in
                 NSAccessibility.post(
@@ -47,7 +59,7 @@ struct BeaconApp: App {
         Settings {
             SettingsView()
         }
-        MenuBarExtra("Beacon", systemImage: "target") {
+        MenuBarExtra("Beacon", systemImage: "scope") {
             MenuBarMenuContent(appDelegate: appDelegate)
         }
     }

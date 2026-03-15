@@ -11,6 +11,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var fadeTimer: Timer?
     private var isFadedOut = false
     private let defaults = UserDefaults.standard
+    private var settingsObserver: NSObjectProtocol?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         defaults.register(defaults: [
@@ -19,6 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             SettingsKeys.crosshairLineStyle: SettingsDefaults.crosshairLineStyle,
             SettingsKeys.crosshairDashLength: SettingsDefaults.crosshairDashLength,
             SettingsKeys.crosshairGapLength: SettingsDefaults.crosshairGapLength,
+            SettingsKeys.crosshairEnabled: SettingsDefaults.crosshairEnabled,
             SettingsKeys.fadeTimeout: SettingsDefaults.fadeTimeout,
             SettingsKeys.spotlightEnabled: SettingsDefaults.spotlightEnabled,
             SettingsKeys.spotlightRadius: SettingsDefaults.spotlightRadius,
@@ -39,6 +41,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             object: nil
         )
 
+        settingsObserver = NotificationCenter.default.addObserver(
+            forName: UserDefaults.didChangeNotification,
+            object: defaults,
+            queue: .main
+        ) { [weak self] _ in
+            MainActor.assumeIsolated {
+                self?.updateAllOverlays(cursorPosition: NSEvent.mouseLocation)
+            }
+        }
+
         mouseTracker = MouseTracker { [weak self] position in
             self?.handleMouseMove(position)
         }
@@ -54,6 +66,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         mouseTracker?.stop()
         hotkeyManager?.stop()
         fadeTimer?.invalidate()
+        if let token = settingsObserver {
+            NotificationCenter.default.removeObserver(token)
+        }
     }
 
     @objc private func screenParametersDidChange(_ notification: Notification) {

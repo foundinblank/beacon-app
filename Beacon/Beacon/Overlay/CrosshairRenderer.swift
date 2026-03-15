@@ -22,6 +22,7 @@ class CrosshairRenderer {
     private var lastLineStyle: String = ""
     private var lastDashLength: CGFloat = -1
     private var lastGapLength: CGFloat = -1
+    private var lastEnabled: Bool = true
 
     private lazy var allLines: [CAShapeLayer] = [topLine, bottomLine, leftLine, rightLine]
 
@@ -55,6 +56,7 @@ class CrosshairRenderer {
     }
 
     func updatePosition(_ position: NSPoint, bounds: NSRect) {
+        guard lastEnabled else { return }
         guard position != lastDrawnPosition || bounds != lastDrawnBounds else { return }
         lastDrawnPosition = position
         lastDrawnBounds = bounds
@@ -94,20 +96,28 @@ class CrosshairRenderer {
     }
 
     private func applySettings() {
+        let enabled = defaults.object(forKey: SettingsKeys.crosshairEnabled) as? Bool
+            ?? SettingsDefaults.crosshairEnabled
         let colorHex = defaults.string(forKey: SettingsKeys.crosshairColor) ?? SettingsDefaults.crosshairColor
         let thicknessVal = defaultedDouble(forKey: SettingsKeys.crosshairThickness, default: SettingsDefaults.crosshairThickness)
         let lineStyleRaw = defaults.string(forKey: SettingsKeys.crosshairLineStyle) ?? SettingsDefaults.crosshairLineStyle
         let dashLengthVal = defaultedDouble(forKey: SettingsKeys.crosshairDashLength, default: SettingsDefaults.crosshairDashLength)
         let gapLengthVal = defaultedDouble(forKey: SettingsKeys.crosshairGapLength, default: SettingsDefaults.crosshairGapLength)
 
-        if colorHex == lastColorHex && thicknessVal == lastThickness &&
+        if enabled == lastEnabled && colorHex == lastColorHex && thicknessVal == lastThickness &&
             lineStyleRaw == lastLineStyle && dashLengthVal == lastDashLength &&
             gapLengthVal == lastGapLength { return }
+        lastEnabled = enabled
         lastColorHex = colorHex
         lastThickness = thicknessVal
         lastLineStyle = lineStyleRaw
         lastDashLength = dashLengthVal
         lastGapLength = gapLengthVal
+
+        for line in allLines {
+            line.isHidden = !enabled
+        }
+        guard enabled else { return }
 
         let color = (NSColor(hex: colorHex) ?? SettingsDefaults.crosshairNSColor).cgColor
         let thickness = thicknessVal
