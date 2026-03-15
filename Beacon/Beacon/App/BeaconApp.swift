@@ -36,7 +36,7 @@ private struct MenuBarMenuContent: View {
             log.debug("Ping button tapped")
             appDelegate.performPing()
         }
-        .keyboardShortcut("/", modifiers: [.command, .shift])
+        .keyboardShortcut("0", modifiers: [.command])
         Divider()
         Button("Settings...") {
             openSettings()

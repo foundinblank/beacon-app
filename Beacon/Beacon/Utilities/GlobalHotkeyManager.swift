@@ -20,11 +20,11 @@ class GlobalHotkeyManager {
     func start() {
         GlobalHotkeyManager.instance = self
 
-        // Cmd-Shift-/ (slash is keycode 0x2C)
+        // Cmd-0 (zero is keycode kVK_ANSI_0)
         let hotkeyID = EventHotKeyID(signature: OSType(0x4243_4E50), // "BCNP" (Beacon Ping)
                                       id: 1)
-        let modifiers = UInt32(cmdKey | shiftKey)
-        let keyCode = UInt32(kVK_ANSI_Slash)
+        let modifiers = UInt32(cmdKey)
+        let keyCode = UInt32(kVK_ANSI_0)
 
         var eventType = EventTypeSpec(eventClass: OSType(kEventClassKeyboard),
                                        eventKind: UInt32(kEventHotKeyPressed))
@@ -34,7 +34,7 @@ class GlobalHotkeyManager {
             GetApplicationEventTarget(),
             { _, event, _ -> OSStatus in
                 Task { @MainActor in
-                    log.debug("hotkey pressed: Cmd-Shift-/")
+                    log.debug("hotkey pressed: Cmd-0")
                     GlobalHotkeyManager.instance?.handler()
                 }
                 return noErr
@@ -51,7 +51,7 @@ class GlobalHotkeyManager {
         if status != noErr {
             log.error("RegisterEventHotKey failed: \(status)")
         } else {
-            log.debug("registered global hotkey Cmd-Shift-/")
+            log.debug("registered global hotkey Cmd-0")
         }
     }
 

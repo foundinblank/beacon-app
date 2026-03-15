@@ -10,7 +10,7 @@ Runs entirely in the menu bar — no dock icon, no windows to manage. The overla
 
 - **Crosshair Overlay** — Horizontal and vertical lines that follow your cursor. Customize color, thickness, and line style (solid, dashed, or dotted).
 - **Spotlight Mode** — A circular highlight around the cursor with adjustable radius and background dimming, making it easy to spot on busy screens.
-- **Ping** — Press **Cmd+Shift+/** to instantly center your cursor on screen with a ripple animation. Three modes: center + ripple, center only, or ripple only.
+- **Ping** — Press **Cmd+0** to instantly center your cursor on screen with a ripple animation. Three modes: center + ripple, center only, or ripple only.
 - **Fade After Idle** — The overlay fades out when the mouse is still and reappears when you move it.
 - **Multi-Monitor Support** — Automatically detects all connected displays and follows the cursor across screens.
 - **Master Color Sync** — Set one color and apply it across all features at once.
@@ -50,7 +50,7 @@ Beacon lives in your menu bar with a crosshair icon. Click it to toggle features
 |--------|-----|
 | Toggle crosshair | Menu bar > Crosshair |
 | Toggle spotlight | Menu bar > Spotlight |
-| Ping (center cursor + ripple) | **Cmd+Shift+/** |
+| Ping (center cursor + ripple) | **Cmd+0** |
 | Open settings | Menu bar > Settings (or **Cmd+,**) |
 | Quit | Menu bar > Quit (or **Cmd+Q**) |
 

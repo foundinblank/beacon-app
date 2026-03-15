@@ -18,7 +18,7 @@ struct PingSettingsTab: View {
             Section("Ping") {
                 Toggle("Enable Ping", isOn: $enabled)
 
-                Text("Shortcut: \u{2318}\u{21E7}/")
+                Text("Shortcut: \u{2318}0")
                     .font(.callout)
                     .foregroundStyle(.secondary)
 
