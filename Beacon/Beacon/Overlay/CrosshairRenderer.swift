@@ -98,7 +98,12 @@ class CrosshairRenderer {
     private func applySettings() {
         let enabled = defaults.object(forKey: SettingsKeys.crosshairEnabled) as? Bool
             ?? SettingsDefaults.crosshairEnabled
-        let colorHex = defaults.string(forKey: SettingsKeys.crosshairColor) ?? SettingsDefaults.crosshairColor
+        let colorHex: String
+        if defaults.object(forKey: SettingsKeys.syncColor) as? Bool ?? SettingsDefaults.syncColor {
+            colorHex = defaults.string(forKey: SettingsKeys.masterColor) ?? SettingsDefaults.masterColor
+        } else {
+            colorHex = defaults.string(forKey: SettingsKeys.crosshairColor) ?? SettingsDefaults.crosshairColor
+        }
         let thicknessVal = defaultedDouble(forKey: SettingsKeys.crosshairThickness, default: SettingsDefaults.crosshairThickness)
         let lineStyleRaw = defaults.string(forKey: SettingsKeys.crosshairLineStyle) ?? SettingsDefaults.crosshairLineStyle
         let dashLengthVal = defaultedDouble(forKey: SettingsKeys.crosshairDashLength, default: SettingsDefaults.crosshairDashLength)
