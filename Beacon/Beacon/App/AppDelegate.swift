@@ -14,6 +14,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var settingsObserver: NSObjectProtocol?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        // One-time migration: copy crosshairColor → masterColor for existing users
+        if defaults.object(forKey: SettingsKeys.masterColor) == nil,
+           let existingColor = defaults.string(forKey: SettingsKeys.crosshairColor) {
+            defaults.set(existingColor, forKey: SettingsKeys.masterColor)
+        }
+
         defaults.register(defaults: [
             SettingsKeys.crosshairColor: SettingsDefaults.crosshairColor,
             SettingsKeys.crosshairThickness: SettingsDefaults.crosshairThickness,
@@ -30,6 +36,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             SettingsKeys.rippleColor: SettingsDefaults.rippleColor,
             SettingsKeys.spotlightBorderColor: SettingsDefaults.spotlightBorderColor,
             SettingsKeys.syncColor: SettingsDefaults.syncColor,
+            SettingsKeys.masterColor: SettingsDefaults.masterColor,
         ])
 
         buildOverlays()
