@@ -14,6 +14,9 @@ struct GeneralSettingsSection: View {
                         .monospacedDigit()
                 }
                 Slider(value: $fadeTimeout, in: 0...10, step: 0.5)
+                    .accessibilityLabel("Fade after idle")
+                    .accessibilityValue(fadeTimeout == 0 ? "Off" : String(format: "%.1f seconds", fadeTimeout))
+                    .accessibilityHint("Set to zero to disable auto-fade")
             }
         }
     }

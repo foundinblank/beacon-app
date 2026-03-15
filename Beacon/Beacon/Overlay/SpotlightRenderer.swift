@@ -99,8 +99,12 @@ class SpotlightRenderer {
         dimLayer.isHidden = !enabled
         dimLayer.fillColor = NSColor.black.withAlphaComponent(dimOpacity).cgColor
 
-        borderLayer.isHidden = !enabled || borderWidth <= 0
-        borderLayer.lineWidth = borderWidth
+        // When Increase Contrast is enabled, ensure a visible border even if user set it to 0
+        let effectiveBorderWidth = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
+            ? max(borderWidth, 2.0) : borderWidth
+
+        borderLayer.isHidden = !enabled || effectiveBorderWidth <= 0
+        borderLayer.lineWidth = effectiveBorderWidth
         borderLayer.strokeColor = (NSColor(hex: colorHex) ?? SettingsDefaults.spotlightBorderNSColor).cgColor
 
         if enabled {

@@ -122,9 +122,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         // Determine current screen
         let mouseLocation = NSEvent.mouseLocation
-        let currentScreen = NSScreen.screens.first(where: { $0.frame.contains(mouseLocation) })
-            ?? NSScreen.main
-            ?? NSScreen.screens[0]
+        guard let currentScreen = NSScreen.screens.first(where: { $0.frame.contains(mouseLocation) })
+            ?? NSScreen.main else {
+            log.error("performPing: no screens available")
+            return
+        }
 
         // Restore visibility if faded out
         if isFadedOut {

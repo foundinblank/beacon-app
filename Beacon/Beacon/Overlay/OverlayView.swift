@@ -34,6 +34,12 @@ class OverlayView: NSView {
 
     func fadeOut(duration: CFTimeInterval) {
         guard let layer = layer, layer.opacity != 0 else { return }
+        // Respect Reduce Motion: skip animation, hide instantly
+        if NSWorkspace.shared.accessibilityDisplayShouldReduceMotion {
+            layer.removeAnimation(forKey: "fadeOut")
+            layer.opacity = 0
+            return
+        }
         let animation = CABasicAnimation(keyPath: "opacity")
         animation.fromValue = layer.opacity
         animation.toValue = Float(0)

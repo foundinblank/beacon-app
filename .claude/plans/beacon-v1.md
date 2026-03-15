@@ -293,6 +293,31 @@ Final verification before release:
 - App uses minimal CPU/memory (check Activity Monitor)
 - App works in all Spaces and alongside fullscreen apps
 
+## Code Quality Improvements (Post-v1)
+
+### Shared Utilities
+- Extract shared `UserDefaults` typed accessor (`defaultedDouble(forKey:default:)`) to a `UserDefaults` extension for reuse across renderers
+- Switch `UserDefaults.didChangeNotification` observers to KVO on specific keys for more precise change detection
+- Add `CaseIterable` conformance to `LineStyle` enum for cleaner Picker code
+
+### Accessibility
+- Increase color preset circle tap targets (currently 18x18pt, below Apple's 44pt recommendation — especially important for low-vision users)
+- Add `Reduce Transparency` support (`accessibilityDisplayShouldReduceTransparency`) — use fully opaque dim layer when enabled
+### macOS App Design
+- Add a Help menu with basic feature/shortcut documentation — expected for a Mac accessibility app
+- Remove dead `edgeGap` property in `CrosshairRenderer` (always 0, adds complexity to path math) — or expose it as a setting
+- Fix line style conditional inconsistency in `CrosshairSettingsSection` — two `if` blocks use different logic to show dash-related sliders
+
+### Swift Concurrency & Lifecycle
+- `deinit` in `CrosshairRenderer`/`SpotlightRenderer` accesses `nonisolated(unsafe)` properties — should use explicit `tearDown()` on MainActor instead
+- Ripple animation cleanup uses `DispatchQueue.main.asyncAfter` instead of `CAAnimationDelegate` — slight timing mismatch risk
+- Overlay rebuild during active ripple could cause visual glitches — call `rippleManager.cleanup()` before tearing down overlays
+- `RippleAnimationManager` inherits `NSObject` unnecessarily — remove superclass
+
+### SwiftUI
+- Computed `Binding` recreated every `body` evaluation in `PingSettingsSection` and `ColorPickerRow` — defeats SwiftUI diffing
+- `@AppStorage` default values duplicated across files vs `register(defaults:)` in AppDelegate — potential divergence risk
+
 ## Future Enhancements (Post-v1)
 
 - Gradient color animation for auto-center (replace flash with color sweep)

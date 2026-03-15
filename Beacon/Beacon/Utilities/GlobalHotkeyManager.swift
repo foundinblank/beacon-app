@@ -9,6 +9,7 @@ class GlobalHotkeyManager {
     typealias Handler = @MainActor () -> Void
 
     private var hotkeyRef: EventHotKeyRef?
+    private var eventHandlerRef: EventHandlerRef?
     private let handler: Handler
     private static var instance: GlobalHotkeyManager?
 
@@ -28,10 +29,11 @@ class GlobalHotkeyManager {
         var eventType = EventTypeSpec(eventClass: OSType(kEventClassKeyboard),
                                        eventKind: UInt32(kEventHotKeyPressed))
 
+        var handlerRef: EventHandlerRef?
         InstallEventHandler(
             GetApplicationEventTarget(),
             { _, event, _ -> OSStatus in
-                MainActor.assumeIsolated {
+                Task { @MainActor in
                     log.debug("hotkey pressed: Cmd-Shift-/")
                     GlobalHotkeyManager.instance?.handler()
                 }
@@ -40,8 +42,9 @@ class GlobalHotkeyManager {
             1,
             &eventType,
             nil,
-            nil
+            &handlerRef
         )
+        eventHandlerRef = handlerRef
 
         let status = RegisterEventHotKey(keyCode, modifiers, hotkeyID,
                                           GetApplicationEventTarget(), 0, &hotkeyRef)
@@ -56,6 +59,10 @@ class GlobalHotkeyManager {
         if let ref = hotkeyRef {
             UnregisterEventHotKey(ref)
             hotkeyRef = nil
+        }
+        if let ref = eventHandlerRef {
+            RemoveEventHandler(ref)
+            eventHandlerRef = nil
         }
         GlobalHotkeyManager.instance = nil
     }

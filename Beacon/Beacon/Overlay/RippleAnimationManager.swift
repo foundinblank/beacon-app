@@ -24,6 +24,27 @@ class RippleAnimationManager: NSObject {
             ?? SettingsDefaults.rippleColor
         let color = (NSColor(hex: colorHex) ?? SettingsDefaults.rippleNSColor).cgColor
 
+        // Respect Reduce Motion: show a static ring briefly instead of animated ripples
+        if NSWorkspace.shared.accessibilityDisplayShouldReduceMotion {
+            let ring = CAShapeLayer()
+            let radius: CGFloat = 40
+            let rect = CGRect(x: point.x - radius, y: point.y - radius,
+                              width: radius * 2, height: radius * 2)
+            ring.path = CGPath(ellipseIn: rect, transform: nil)
+            ring.fillColor = nil
+            ring.strokeColor = color
+            ring.lineWidth = lineWidth * 2
+            ring.opacity = 1
+            ring.actions = ["opacity": NSNull()]
+            layer.addSublayer(ring)
+            rings.append(ring)
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+                self?.cleanup()
+            }
+            return
+        }
+
         let now = CACurrentMediaTime()
 
         for i in 0..<ringCount {

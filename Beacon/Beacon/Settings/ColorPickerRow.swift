@@ -28,16 +28,19 @@ struct ColorPickerRow: View {
                 .fixedSize()
             Spacer()
             ForEach(Self.presetColors, id: \.name) { preset in
+                let isSelected = colorHex == preset.hex
                 Button {
                     colorHex = preset.hex
                 } label: {
                     Circle()
                         .fill(preset.color)
-                        .stroke(colorHex == preset.hex ? Color.accentColor : Color.gray.opacity(0.3), lineWidth: 2)
+                        .stroke(isSelected ? Color.accentColor : Color.gray.opacity(0.3), lineWidth: 2)
                         .frame(width: 18, height: 18)
                 }
                 .buttonStyle(.plain)
                 .accessibilityLabel(preset.name)
+                .accessibilityAddTraits(isSelected ? .isSelected : [])
+                .accessibilityHint("Select \(preset.name.lowercased()) as \(label.lowercased())")
             }
             ColorPicker("", selection: selectedColor, supportsOpacity: true)
                 .labelsHidden()

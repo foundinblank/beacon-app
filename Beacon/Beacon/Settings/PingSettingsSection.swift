@@ -14,6 +14,10 @@ struct PingSettingsSection: View {
 
     var body: some View {
         Section("Ping") {
+            Text("Shortcut: \u{2318}\u{21E7}/")
+                .font(.callout)
+                .foregroundStyle(.secondary)
+
             Picker("Mode", selection: selectedMode) {
                 ForEach(PingMode.allCases, id: \.self) { mode in
                     Text(mode.label).tag(mode)

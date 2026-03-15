@@ -24,6 +24,7 @@ private struct MenuBarMenuContent: View {
             log.debug("Ping button tapped")
             appDelegate.performPing()
         }
+        .keyboardShortcut("/", modifiers: [.command, .shift])
         Divider()
         Button("Settings...") {
             NSApp.activate()

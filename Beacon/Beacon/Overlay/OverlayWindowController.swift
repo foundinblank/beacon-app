@@ -30,7 +30,12 @@ class OverlayWindowController: NSWindowController {
         window.hidesOnDeactivate = false
         window.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary, .stationary]
 
+        // Hide overlay from VoiceOver — it's visual-only and should not appear as an unlabeled window
+        window.setAccessibilityElement(false)
+        window.setAccessibilityRole(.unknown)
+
         let view = OverlayView(frame: NSRect(origin: .zero, size: screen.frame.size))
+        view.setAccessibilityElement(false)
         window.contentView = view
         self.overlayView = view
         self.ownedScreen = screen

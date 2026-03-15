@@ -8,6 +8,7 @@ class MouseTracker {
     private nonisolated(unsafe) var globalMonitor: Any?
     private nonisolated(unsafe) var localMonitor: Any?
     private nonisolated(unsafe) var trackingTimer: Timer?
+    private var lastPolledPosition: NSPoint = .zero
 
     init(callback: @escaping PositionCallback) {
         self.callback = callback
@@ -34,7 +35,10 @@ class MouseTracker {
         // Fallback polling during modal event tracking (e.g., menu bar open)
         let timer = Timer(timeInterval: 1.0 / 60, repeats: true) { [weak self] _ in
             MainActor.assumeIsolated {
-                self?.callback(NSEvent.mouseLocation)
+                let pos = NSEvent.mouseLocation
+                guard pos != self?.lastPolledPosition else { return }
+                self?.lastPolledPosition = pos
+                self?.callback(pos)
             }
         }
         RunLoop.main.add(timer, forMode: .eventTracking)

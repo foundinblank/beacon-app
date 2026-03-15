@@ -129,9 +129,13 @@ class CrosshairRenderer {
             lineCap = .butt
         }
 
+        // When Increase Contrast is enabled, boost line thickness for better visibility
+        let effectiveThickness = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
+            ? max(thickness, 3.0) : thickness
+
         for line in allLines {
             line.strokeColor = color
-            line.lineWidth = thickness
+            line.lineWidth = effectiveThickness
             line.lineDashPattern = dashPattern
             line.lineCap = lineCap
         }
