@@ -1,5 +1,7 @@
 # Settings Tabbed Redesign — Implementation Plan
 
+> **Status: COMPLETE** (2026-03-15)
+
 > **For agentic workers:** REQUIRED: Use superpowers:subagent-driven-development (if subagents available) or superpowers:executing-plans to implement this plan. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Redesign the Beacon settings panel from a single scrolling form into a 4-tab TabView with a new master color model, fixing window overflow and adding crosshair toggle consistency.
