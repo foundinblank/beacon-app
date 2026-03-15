@@ -20,8 +20,12 @@ class RippleAnimationManager: NSObject {
         // Remove any in-progress rings
         cleanup()
 
-        let colorHex = defaults.string(forKey: SettingsKeys.rippleColor)
-            ?? SettingsDefaults.rippleColor
+        let colorHex: String
+        if defaults.object(forKey: SettingsKeys.syncColor) as? Bool ?? SettingsDefaults.syncColor {
+            colorHex = defaults.string(forKey: SettingsKeys.masterColor) ?? SettingsDefaults.masterColor
+        } else {
+            colorHex = defaults.string(forKey: SettingsKeys.rippleColor) ?? SettingsDefaults.rippleColor
+        }
         let color = (NSColor(hex: colorHex) ?? SettingsDefaults.rippleNSColor).cgColor
 
         // Respect Reduce Motion: show a static ring briefly instead of animated ripples
