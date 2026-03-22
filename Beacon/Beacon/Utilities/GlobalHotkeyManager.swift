@@ -2,7 +2,7 @@ import AppKit
 import Carbon
 import os
 
-private let log = Logger(subsystem: "com.beacon.app", category: "hotkey")
+private let log = Logger(subsystem: "com.foundinblank.beacon", category: "hotkey")
 
 @MainActor
 class GlobalHotkeyManager {

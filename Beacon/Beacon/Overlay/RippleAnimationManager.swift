@@ -2,7 +2,7 @@ import AppKit
 import os
 import QuartzCore
 
-private let log = Logger(subsystem: "com.beacon.app", category: "ripple")
+private let log = Logger(subsystem: "com.foundinblank.beacon", category: "ripple")
 
 @MainActor
 class RippleAnimationManager {

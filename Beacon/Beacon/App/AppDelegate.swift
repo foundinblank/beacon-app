@@ -1,7 +1,7 @@
 import AppKit
 import os
 
-private let log = Logger(subsystem: "com.beacon.app", category: "ping")
+private let log = Logger(subsystem: "com.foundinblank.beacon", category: "ping")
 
 @MainActor
 class AppDelegate: NSObject, NSApplicationDelegate {

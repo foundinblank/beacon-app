@@ -1,7 +1,7 @@
 import AppKit
 import os
 
-private let log = Logger(subsystem: "com.beacon.app", category: "overlay")
+private let log = Logger(subsystem: "com.foundinblank.beacon", category: "overlay")
 
 @MainActor
 private class OverlayPanel: NSPanel {

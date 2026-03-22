@@ -32,7 +32,7 @@ struct GeneralSettingsTab: View {
                             }
                             requiresApproval = SMAppService.mainApp.status == .requiresApproval
                         } catch {
-                            Logger(subsystem: "com.beacon.app", category: "settings")
+                            Logger(subsystem: "com.foundinblank.beacon", category: "settings")
                                 .error("SMAppService registration failed: \(error)")
                             launchAtLogin = !newValue
                         }

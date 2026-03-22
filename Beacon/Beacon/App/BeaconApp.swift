@@ -1,7 +1,7 @@
 import os
 import SwiftUI
 
-private let log = Logger(subsystem: "com.beacon.app", category: "menu")
+private let log = Logger(subsystem: "com.foundinblank.beacon", category: "menu")
 
 private struct MenuBarMenuContent: View {
     @Environment(\.openSettings) private var openSettings
