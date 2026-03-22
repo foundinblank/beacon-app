@@ -1,4 +1,5 @@
 import AppKit
+import SwiftUI
 import os
 
 private let log = Logger(subsystem: "com.foundinblank.beacon", category: "ping")
@@ -14,6 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private let defaults = UserDefaults.standard
     private var settingsObserver: NSObjectProtocol?
     private let diagnosticsManager = DiagnosticsManager.shared
+    private var onboardingWindow: NSWindow?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         // One-time migration: copy crosshairColor → masterColor for existing users
@@ -40,6 +42,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             SettingsKeys.spotlightBorderColor: SettingsDefaults.spotlightBorderColor,
             SettingsKeys.syncColor: SettingsDefaults.syncColor,
             SettingsKeys.masterColor: SettingsDefaults.masterColor,
+            SettingsKeys.hasCompletedOnboarding: false,
         ])
 
         buildOverlays()
@@ -80,6 +83,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         DiagnosticsManager.shared.start()
         AccessibilityPermission.promptIfNeeded()
+
+        if !defaults.bool(forKey: SettingsKeys.hasCompletedOnboarding) {
+            showOnboarding()
+        }
     }
 
     func applicationWillTerminate(_ notification: Notification) {
@@ -89,6 +96,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let token = settingsObserver {
             NotificationCenter.default.removeObserver(token)
         }
+    }
+
+    private func showOnboarding() {
+        let onboardingView = OnboardingView {
+            UserDefaults.standard.set(true, forKey: SettingsKeys.hasCompletedOnboarding)
+        }
+        let hostingController = NSHostingController(rootView: onboardingView)
+        let window = NSWindow(contentViewController: hostingController)
+        window.title = "Welcome to Beacon"
+        window.styleMask = [.titled, .closable]
+        window.setContentSize(NSSize(width: 480, height: 360))
+        window.center()
+        window.makeKeyAndOrderFront(nil)
+        NSApp.activate()
+
+        // Retain the window
+        self.onboardingWindow = window
     }
 
     @objc private func screenParametersDidChange(_ notification: Notification) {

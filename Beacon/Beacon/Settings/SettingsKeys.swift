@@ -21,6 +21,7 @@ enum SettingsKeys {
     static let syncColor = "syncColor"
     static let masterColor = "masterColor"
     static let selectedSettingsTab = "selectedSettingsTab"
+    static let hasCompletedOnboarding = "hasCompletedOnboarding"
 }
 
 enum SettingsDefaults {

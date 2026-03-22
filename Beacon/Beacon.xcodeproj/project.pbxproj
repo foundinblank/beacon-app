@@ -30,6 +30,7 @@
 		A10000010000000000000080 /* AccessibilityPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000080 /* AccessibilityPermission.swift */; };
 		A10000010000000000000090 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000090 /* PrivacyInfo.xcprivacy */; };
 		A100000100000000000000A0 /* DiagnosticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100000200000000000000A0 /* DiagnosticsManager.swift */; };
+		A100000100000000000000B0 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100000200000000000000B0 /* OnboardingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		A10000020000000000000080 /* AccessibilityPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityPermission.swift; sourceTree = "<group>"; };
 		A10000020000000000000090 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		A100000200000000000000A0 /* DiagnosticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsManager.swift; sourceTree = "<group>"; };
+		A100000200000000000000B0 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		A10000030000000000000001 /* Beacon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beacon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -151,6 +153,7 @@
 				A10000020000000000000060 /* ColorPickerRow.swift */,
 				A10000020000000000000014 /* CrosshairSettingsTab.swift */,
 				A10000020000000000000016 /* GeneralSettingsTab.swift */,
+				A100000200000000000000B0 /* OnboardingView.swift */,
 				A10000020000000000000040 /* PingSettingsTab.swift */,
 				A10000020000000000000013 /* SettingsKeys.swift */,
 				A10000020000000000000015 /* SettingsView.swift */,
@@ -259,6 +262,7 @@
 				A10000010000000000000060 /* ColorPickerRow.swift in Sources */,
 				A10000010000000000000080 /* AccessibilityPermission.swift in Sources */,
 				A100000100000000000000A0 /* DiagnosticsManager.swift in Sources */,
+				A100000100000000000000B0 /* OnboardingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
