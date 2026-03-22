@@ -53,10 +53,32 @@ private struct MenuBarMenuContent: View {
         }
         .keyboardShortcut(",")
         Divider()
+        Button("Keyboard Shortcuts") {
+            showKeyboardShortcuts()
+        }
+        Button("About Beacon") {
+            NSApplication.shared.orderFrontStandardAboutPanel()
+            NSApp.activate()
+        }
+        Divider()
         Button("Quit Beacon") {
             NSApplication.shared.terminate(nil)
         }
         .keyboardShortcut("q")
+    }
+
+    private func showKeyboardShortcuts() {
+        let alert = NSAlert()
+        alert.messageText = "Keyboard Shortcuts"
+        alert.informativeText = """
+        ⌘0\tPing (center cursor)
+        ⌘,\tSettings
+        ⌘Q\tQuit
+        """
+        alert.alertStyle = .informational
+        alert.addButton(withTitle: "OK")
+        NSApp.activate()
+        alert.runModal()
     }
 }
 
