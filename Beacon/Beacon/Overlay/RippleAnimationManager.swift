@@ -5,7 +5,7 @@ import QuartzCore
 private let log = Logger(subsystem: "com.beacon.app", category: "ripple")
 
 @MainActor
-class RippleAnimationManager: NSObject {
+class RippleAnimationManager {
     private let ringCount = 3
     private var startRadius: CGFloat {
         CGFloat(defaults.object(forKey: SettingsKeys.rippleRadius) as? Double
