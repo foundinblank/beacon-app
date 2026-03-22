@@ -40,7 +40,7 @@ private struct MenuBarMenuContent: View {
         Divider()
         Button("Settings...") {
             openSettings()
-            NSApp.activate(ignoringOtherApps: true)
+            NSApp.activate()
             // Settings window may already exist but be behind other windows;
             // find it specifically and bring it forward.
             DispatchQueue.main.async {
@@ -48,7 +48,7 @@ private struct MenuBarMenuContent: View {
                 where window.canBecomeKey && !(window is NSPanel) {
                     window.makeKeyAndOrderFront(nil)
                 }
-                NSApp.activate(ignoringOtherApps: true)
+                NSApp.activate()
             }
         }
         .keyboardShortcut(",")
