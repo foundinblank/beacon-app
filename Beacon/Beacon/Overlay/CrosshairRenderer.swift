@@ -13,7 +13,6 @@ class CrosshairRenderer {
 
     private static let defaultGap: CGFloat = 20.0
     private var gap: CGFloat = CrosshairRenderer.defaultGap
-    private var edgeGap: CGFloat = 0.0
 
     private var lastDrawnPosition: NSPoint = .zero
     private var lastDrawnBounds: NSRect = .zero
@@ -68,26 +67,26 @@ class CrosshairRenderer {
 
         // Left line: from cursor gap to left edge
         let leftPath = CGMutablePath()
-        leftPath.move(to: CGPoint(x: max(edgeGap, x - gap), y: y))
-        leftPath.addLine(to: CGPoint(x: edgeGap, y: y))
+        leftPath.move(to: CGPoint(x: max(0, x - gap), y: y))
+        leftPath.addLine(to: CGPoint(x: 0, y: y))
         leftLine.path = leftPath
 
         // Right line: from cursor gap to right edge
         let rightPath = CGMutablePath()
         rightPath.move(to: CGPoint(x: x + gap, y: y))
-        rightPath.addLine(to: CGPoint(x: bounds.width - edgeGap, y: y))
+        rightPath.addLine(to: CGPoint(x: bounds.width, y: y))
         rightLine.path = rightPath
 
         // Bottom line: from cursor gap to bottom edge (y=0 is bottom in CALayer)
         let bottomPath = CGMutablePath()
-        bottomPath.move(to: CGPoint(x: x, y: max(edgeGap, y - gap)))
-        bottomPath.addLine(to: CGPoint(x: x, y: edgeGap))
+        bottomPath.move(to: CGPoint(x: x, y: max(0, y - gap)))
+        bottomPath.addLine(to: CGPoint(x: x, y: 0))
         bottomLine.path = bottomPath
 
         // Top line: from cursor gap to top edge
         let topPath = CGMutablePath()
         topPath.move(to: CGPoint(x: x, y: y + gap))
-        topPath.addLine(to: CGPoint(x: x, y: bounds.height - edgeGap))
+        topPath.addLine(to: CGPoint(x: x, y: bounds.height))
         topLine.path = topPath
     }
 
