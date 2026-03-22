@@ -14,22 +14,18 @@ struct CrosshairSettingsTab: View {
             Section("Crosshair") {
                 Toggle("Enable Crosshair", isOn: $enabled)
 
-                ColorPickerRow(label: "Color", colorHex: $colorHex)
+                ColorPickerRow(label: "Line color", colorHex: $colorHex,
+                               subtitle: syncColor ? "Color is synced from the General tab" : nil)
                     .disabled(syncColor)
-                if syncColor {
-                    Text("Color is set in the General tab")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-
-                SliderRow(label: "Line thickness", value: $thickness, range: 0.5...10, step: 0.5) {
-                    String(format: "%.1f px", $0)
-                }
 
                 Picker("Line style", selection: $lineStyle) {
                     Text("Solid").tag(LineStyle.solid.rawValue)
                     Text("Dashed").tag(LineStyle.dashed.rawValue)
                     Text("Dotted").tag(LineStyle.dotted.rawValue)
+                }
+
+                SliderRow(label: "Line thickness", value: $thickness, range: 0.5...10, step: 0.5) {
+                    String(format: "%.1f px", $0)
                 }
 
                 if lineStyle == LineStyle.dashed.rawValue {

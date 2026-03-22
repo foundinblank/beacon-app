@@ -15,6 +15,8 @@ enum SettingsKeys {
     static let pingEnabled = "pingEnabled"
     static let pingMode = "pingMode"
     static let rippleColor = "rippleColor"
+    static let rippleLineWidth = "rippleLineWidth"
+    static let rippleRadius = "rippleRadius"
     static let spotlightBorderColor = "spotlightBorderColor"
     static let syncColor = "syncColor"
     static let masterColor = "masterColor"
@@ -38,6 +40,8 @@ enum SettingsDefaults {
     static let pingMode = PingMode.centerAndRipple.rawValue
     static let rippleColor = "#FF0000"
     static let rippleNSColor: NSColor = NSColor(hex: rippleColor) ?? .red
+    static let rippleLineWidth: Double = 2.0
+    static let rippleRadius: Double = 150.0
     static let spotlightBorderColor = "#FF0000"
     static let spotlightBorderNSColor: NSColor = NSColor(hex: spotlightBorderColor) ?? .red
     static let syncColor = true

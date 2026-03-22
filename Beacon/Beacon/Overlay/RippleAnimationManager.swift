@@ -7,10 +7,16 @@ private let log = Logger(subsystem: "com.beacon.app", category: "ripple")
 @MainActor
 class RippleAnimationManager: NSObject {
     private let ringCount = 3
-    private let startRadius: CGFloat = 150
-    private let ringDuration: CFTimeInterval = 0.4
+    private var startRadius: CGFloat {
+        CGFloat(defaults.object(forKey: SettingsKeys.rippleRadius) as? Double
+                ?? SettingsDefaults.rippleRadius)
+    }
+    private let ringDuration: CFTimeInterval = 0.5
     private let stagger: CFTimeInterval = 0.1
-    private let lineWidth: CGFloat = 2
+    private var lineWidth: CGFloat {
+        CGFloat(defaults.object(forKey: SettingsKeys.rippleLineWidth) as? Double
+                ?? SettingsDefaults.rippleLineWidth)
+    }
 
     private var rings: [CAShapeLayer] = []
     private let defaults = UserDefaults.standard

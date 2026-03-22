@@ -14,26 +14,12 @@ struct GeneralSettingsTab: View {
             Section("General") {
                 Toggle("Sync color", isOn: $syncColor)
 
-                ColorPickerRow(label: "Color", colorHex: $masterColorHex)
+                ColorPickerRow(label: "Color", colorHex: $masterColorHex,
+                               subtitle: syncColor ? nil : "Enable Sync color to set a global color")
                     .disabled(!syncColor)
-                if !syncColor {
-                    Text("Enable Sync color to set a global color")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
 
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack {
-                        Text("Fade after idle")
-                        Spacer()
-                        Text(fadeTimeout == 0 ? "Off" : String(format: "%.1fs", fadeTimeout))
-                            .foregroundStyle(.secondary)
-                            .monospacedDigit()
-                    }
-                    Slider(value: $fadeTimeout, in: 0...10, step: 0.5)
-                        .accessibilityLabel("Fade after idle")
-                        .accessibilityValue(fadeTimeout == 0 ? "Off" : String(format: "%.1f seconds", fadeTimeout))
-                        .accessibilityHint("Set to zero to disable auto-fade")
+                SliderRow(label: "Fade after idle", value: $fadeTimeout, range: 0...10, step: 0.5) {
+                    $0 == 0 ? "Off" : String(format: "%.1fs", $0)
                 }
 
                 Toggle("Launch at Login", isOn: $launchAtLogin)

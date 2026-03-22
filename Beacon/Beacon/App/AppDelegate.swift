@@ -9,6 +9,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var mouseTracker: MouseTracker?
     private var hotkeyManager: GlobalHotkeyManager?
     private var fadeTimer: Timer?
+    private var ripplePreviewTimer: Timer?
     private var isFadedOut = false
     private let defaults = UserDefaults.standard
     private var settingsObserver: NSObjectProtocol?
@@ -58,6 +59,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 self?.updateAllOverlays(cursorPosition: NSEvent.mouseLocation)
             }
         }
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handlePreviewRipple),
+            name: .previewRipple,
+            object: nil
+        )
 
         mouseTracker = MouseTracker { [weak self] position in
             self?.handleMouseMove(position)
@@ -134,6 +142,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private func updateAllOverlays(cursorPosition: NSPoint) {
         for controller in overlayControllers {
             controller.updateCursorPosition(cursorPosition)
+        }
+    }
+
+    func playRipplePreview() {
+        let mouseLocation = NSEvent.mouseLocation
+        for controller in overlayControllers {
+            controller.playRipple(at: mouseLocation)
+        }
+    }
+
+    @objc private func handlePreviewRipple() {
+        ripplePreviewTimer?.invalidate()
+        ripplePreviewTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { [weak self] _ in
+            MainActor.assumeIsolated {
+                self?.playRipplePreview()
+            }
         }
     }
 

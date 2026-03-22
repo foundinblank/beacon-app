@@ -3,6 +3,7 @@ import SwiftUI
 struct ColorPickerRow: View {
     let label: String
     @Binding var colorHex: String
+    var subtitle: String? = nil
     @Environment(\.isEnabled) private var isEnabled
 
     private var selectedColor: Binding<Color> {
@@ -25,8 +26,16 @@ struct ColorPickerRow: View {
 
     var body: some View {
         HStack(spacing: 6) {
-            Text(label)
-                .fixedSize()
+            VStack(alignment: .leading, spacing: 2) {
+                Text(label)
+                    .fixedSize()
+                if let subtitle {
+                    Text(subtitle)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .fixedSize()
+                }
+            }
             Spacer()
             ForEach(Self.presetColors, id: \.name) { preset in
                 let isSelected = colorHex == preset.hex

@@ -13,6 +13,12 @@ struct SpotlightSettingsTab: View {
             Section("Spotlight") {
                 Toggle("Enable Spotlight", isOn: $enabled)
 
+                if syncColor || borderWidth > 0 {
+                    ColorPickerRow(label: "Border color", colorHex: $borderColorHex,
+                                   subtitle: syncColor ? "Color is synced from the General tab" : nil)
+                        .disabled(syncColor)
+                }
+
                 SliderRow(label: "Radius", value: $radius, range: 25...300, step: 5) {
                     "\(Int($0)) px"
                 }
@@ -23,16 +29,6 @@ struct SpotlightSettingsTab: View {
 
                 SliderRow(label: "Border thickness", value: $borderWidth, range: 0...10, step: 0.5) {
                     $0 == 0 ? "Off" : String(format: "%.1f px", $0)
-                }
-
-                if syncColor {
-                    ColorPickerRow(label: "Border color", colorHex: $borderColorHex)
-                        .disabled(syncColor)
-                    Text("Color is set in the General tab")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                } else if borderWidth > 0 {
-                    ColorPickerRow(label: "Border color", colorHex: $borderColorHex)
                 }
             }
         }
