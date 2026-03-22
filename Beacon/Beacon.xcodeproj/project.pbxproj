@@ -27,6 +27,7 @@
 		A10000010000000000000040 /* PingSettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000040 /* PingSettingsTab.swift */; };
 		A10000010000000000000050 /* RippleAnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000050 /* RippleAnimationManager.swift */; };
 		A10000010000000000000060 /* ColorPickerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000060 /* ColorPickerRow.swift */; };
+		A10000010000000000000080 /* AccessibilityPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000080 /* AccessibilityPermission.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		A10000020000000000000050 /* RippleAnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RippleAnimationManager.swift; sourceTree = "<group>"; };
 		A10000020000000000000060 /* ColorPickerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerRow.swift; sourceTree = "<group>"; };
 		A10000020000000000000070 /* GlobalHotkeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHotkeyManager.swift; sourceTree = "<group>"; };
+		A10000020000000000000080 /* AccessibilityPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityPermission.swift; sourceTree = "<group>"; };
 		A10000030000000000000001 /* Beacon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beacon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -118,6 +120,7 @@
 		A10000050000000000000005 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				A10000020000000000000080 /* AccessibilityPermission.swift */,
 				A10000020000000000000070 /* GlobalHotkeyManager.swift */,
 				A10000020000000000000006 /* MouseTracker.swift */,
 				A10000020000000000000012 /* NSColor+Hex.swift */,
@@ -247,6 +250,7 @@
 				A10000010000000000000040 /* PingSettingsTab.swift in Sources */,
 				A10000010000000000000050 /* RippleAnimationManager.swift in Sources */,
 				A10000010000000000000060 /* ColorPickerRow.swift in Sources */,
+				A10000010000000000000080 /* AccessibilityPermission.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -4,5 +4,7 @@
 <dict>
 	<key>LSUIElement</key>
 	<true/>
+	<key>NSAccessibilityUsageDescription</key>
+	<string>Beacon needs Accessibility access to move the cursor to the center of the screen when you use the Ping feature.</string>
 </dict>
 </plist>

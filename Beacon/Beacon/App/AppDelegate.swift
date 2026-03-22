@@ -76,6 +76,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self?.performPing()
         }
         hotkeyManager?.start()
+
+        AccessibilityPermission.promptIfNeeded()
     }
 
     func applicationWillTerminate(_ notification: Notification) {
@@ -195,16 +197,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if mode == .rippleOnly {
             targetAppKitPosition = mouseLocation
         } else {
-            // Center cursor
-            let cgCenter = ScreenUtilities.screenCenter(of: currentScreen)
-            let result = CGWarpMouseCursorPosition(cgCenter)
-            if result != .success {
-                log.error("CGWarpMouseCursorPosition failed with error \(result.rawValue)")
-            }
-            targetAppKitPosition = NSPoint(x: currentScreen.frame.midX, y: currentScreen.frame.midY)
+            if AccessibilityPermission.isTrusted {
+                // Center cursor
+                let cgCenter = ScreenUtilities.screenCenter(of: currentScreen)
+                let result = CGWarpMouseCursorPosition(cgCenter)
+                if result != .success {
+                    log.error("CGWarpMouseCursorPosition failed with error \(result.rawValue)")
+                }
+                targetAppKitPosition = NSPoint(x: currentScreen.frame.midX, y: currentScreen.frame.midY)
 
-            // Update overlays at new position
-            updateAllOverlays(cursorPosition: targetAppKitPosition)
+                // Update overlays at new position
+                updateAllOverlays(cursorPosition: targetAppKitPosition)
+            } else {
+                log.warning("Accessibility permission not granted — skipping cursor warp, ripple only")
+                targetAppKitPosition = mouseLocation
+            }
         }
 
         // Play ripple if mode includes it
