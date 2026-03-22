@@ -28,6 +28,7 @@ struct CrosshairSettingsTab: View {
                     String(format: "%.1f px", $0)
                 }
 
+                // Dash length only applies to dashed style (dotted uses zero-width points)
                 if lineStyle == LineStyle.dashed.rawValue {
                     SliderRow(label: "Dash length", value: $dashLength, range: 1...20, step: 1) {
                         "\(Int($0)) px"
