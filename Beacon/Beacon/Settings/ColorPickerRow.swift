@@ -45,7 +45,7 @@ struct ColorPickerRow: View {
                     Circle()
                         .fill(preset.color)
                         .stroke(isSelected ? Color.accentColor : Color.gray.opacity(0.3), lineWidth: 2)
-                        .frame(width: 18, height: 18)
+                        .frame(width: 24, height: 24)
                         .saturation(isEnabled ? 1 : 0)
                         .opacity(isEnabled ? 1 : 0.4)
                 }
