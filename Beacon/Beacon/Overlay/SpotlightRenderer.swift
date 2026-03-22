@@ -98,7 +98,10 @@ class SpotlightRenderer {
         lastColorHex = colorHex
 
         dimLayer.isHidden = !enabled
-        dimLayer.fillColor = NSColor.black.withAlphaComponent(dimOpacity).cgColor
+        // When Reduce Transparency is enabled, ensure the dim layer is sufficiently opaque
+        let effectiveDimOpacity = NSWorkspace.shared.accessibilityDisplayShouldReduceTransparency
+            ? max(dimOpacity, 0.85) : dimOpacity
+        dimLayer.fillColor = NSColor.black.withAlphaComponent(effectiveDimOpacity).cgColor
 
         // When Increase Contrast is enabled, ensure a visible border even if user set it to 0
         let effectiveBorderWidth = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
