@@ -28,6 +28,7 @@
 		A10000010000000000000050 /* RippleAnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000050 /* RippleAnimationManager.swift */; };
 		A10000010000000000000060 /* ColorPickerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000060 /* ColorPickerRow.swift */; };
 		A10000010000000000000080 /* AccessibilityPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000080 /* AccessibilityPermission.swift */; };
+		A10000010000000000000090 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000090 /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		A10000020000000000000060 /* ColorPickerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerRow.swift; sourceTree = "<group>"; };
 		A10000020000000000000070 /* GlobalHotkeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHotkeyManager.swift; sourceTree = "<group>"; };
 		A10000020000000000000080 /* AccessibilityPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityPermission.swift; sourceTree = "<group>"; };
+		A10000020000000000000090 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		A10000030000000000000001 /* Beacon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beacon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -135,6 +137,7 @@
 				A10000020000000000000008 /* Assets.xcassets */,
 				A10000020000000000000009 /* Beacon.entitlements */,
 				A10000020000000000000010 /* Info.plist */,
+				A10000020000000000000090 /* PrivacyInfo.xcprivacy */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A10000010000000000000008 /* Assets.xcassets in Resources */,
+				A10000010000000000000090 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
