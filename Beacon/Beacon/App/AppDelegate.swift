@@ -13,6 +13,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var isFadedOut = false
     private let defaults = UserDefaults.standard
     private var settingsObserver: NSObjectProtocol?
+    private let diagnosticsManager = DiagnosticsManager.shared
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         // One-time migration: copy crosshairColor → masterColor for existing users
@@ -77,6 +78,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         hotkeyManager?.start()
 
+        DiagnosticsManager.shared.start()
         AccessibilityPermission.promptIfNeeded()
     }
 
