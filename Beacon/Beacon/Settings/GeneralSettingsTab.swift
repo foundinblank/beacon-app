@@ -43,6 +43,12 @@ struct GeneralSettingsTab: View {
                         .foregroundStyle(.secondary)
                 }
             }
+
+            Section {
+                Button("Show Welcome Guide") {
+                    NotificationCenter.default.post(name: .showOnboarding, object: nil)
+                }
+            }
         }
         .formStyle(.grouped)
         .scrollBounceBehavior(.basedOnSize)

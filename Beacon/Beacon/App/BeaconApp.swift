@@ -53,6 +53,9 @@ private struct MenuBarMenuContent: View {
         }
         .keyboardShortcut(",")
         Divider()
+        Button("Welcome Guide") {
+            appDelegate.showOnboarding()
+        }
         Button("Keyboard Shortcuts") {
             showKeyboardShortcuts()
         }

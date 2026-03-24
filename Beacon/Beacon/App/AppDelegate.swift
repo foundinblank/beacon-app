@@ -4,6 +4,10 @@ import os
 
 private let log = Logger(subsystem: "com.foundinblank.beacon", category: "ping")
 
+extension Notification.Name {
+    static let showOnboarding = Notification.Name("showOnboarding")
+}
+
 @MainActor
 class AppDelegate: NSObject, NSApplicationDelegate {
     private var overlayControllers: [OverlayWindowController] = []
@@ -71,6 +75,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             object: nil
         )
 
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleShowOnboarding),
+            name: .showOnboarding,
+            object: nil
+        )
+
         mouseTracker = MouseTracker { [weak self] position in
             self?.handleMouseMove(position)
         }
@@ -98,7 +109,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
-    private func showOnboarding() {
+    @objc private func handleShowOnboarding(_ notification: Notification) {
+        showOnboarding()
+    }
+
+    func showOnboarding() {
         let onboardingView = OnboardingView {
             UserDefaults.standard.set(true, forKey: SettingsKeys.hasCompletedOnboarding)
         }
