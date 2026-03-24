@@ -223,19 +223,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if mode == .rippleOnly {
             targetAppKitPosition = mouseLocation
         } else {
-            if AccessibilityPermission.isTrusted {
-                // Center cursor
-                let cgCenter = ScreenUtilities.screenCenter(of: currentScreen)
-                let result = CGWarpMouseCursorPosition(cgCenter)
-                if result != .success {
-                    log.error("CGWarpMouseCursorPosition failed with error \(result.rawValue)")
-                }
+            // Attempt cursor warp directly. Under App Sandbox, AXIsProcessTrusted()
+            // returns false until Apple grants the accessibility entitlement, so we
+            // skip the pre-check and handle failure from CGWarpMouseCursorPosition.
+            let cgCenter = ScreenUtilities.screenCenter(of: currentScreen)
+            let result = CGWarpMouseCursorPosition(cgCenter)
+            if result == .success {
                 targetAppKitPosition = NSPoint(x: currentScreen.frame.midX, y: currentScreen.frame.midY)
-
-                // Update overlays at new position
                 updateAllOverlays(cursorPosition: targetAppKitPosition)
             } else {
-                log.warning("Accessibility permission not granted — skipping cursor warp, ripple only")
+                log.warning("CGWarpMouseCursorPosition failed (\(result.rawValue)) — ripple at current position")
                 targetAppKitPosition = mouseLocation
             }
         }
