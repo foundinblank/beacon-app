@@ -157,12 +157,14 @@ struct OnboardingView: View {
                 .foregroundStyle(.secondary)
                 .padding(.horizontal, 32)
 
-            Button("Grant Accessibility Access") {
-                AccessibilityPermission.promptIfNeeded()
+            Button("Open Accessibility Settings") {
+                NSWorkspace.shared.open(
+                    URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility")!
+                )
             }
             .buttonStyle(.bordered)
 
-            Text("You can skip this — Ping will still show the ripple animation.")
+            Text("If Beacon isn't listed, click the + button to add it.\nYou can skip this — Ping will still show the ripple animation.")
                 .font(.caption)
                 .foregroundStyle(.tertiary)
                 .multilineTextAlignment(.center)
