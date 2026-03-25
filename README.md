@@ -1,10 +1,20 @@
-# Beacon
+<p align="center">
+  <img src="icon.png" width="128" height="128" alt="Beacon app icon">
+</p>
 
-A macOS menu bar app that helps visually impaired users track the mouse cursor. Beacon adds a customizable crosshair overlay, spotlight mode, and ping animation so you never lose sight of your cursor.
+<h1 align="center">Beacon</h1>
+
+<p align="center">
+  A macOS menu bar app that helps you find and track your mouse cursor.<br>
+  Crosshair overlay · Spotlight mode · Ping to center<br><br>
+  <a href="https://github.com/foundinblank/beacon-app/releases">Download</a> · Requires macOS 14+
+</p>
+
+---
+
+Beacon adds a customizable crosshair overlay, spotlight mode, and ping animation so you never lose sight of your cursor. Designed for visually impaired users, anyone with a large or multi-monitor setup, and presenters who want their audience to follow along.
 
 Runs entirely in the menu bar — no dock icon, no windows to manage. The overlay is click-through, so it never interferes with your workflow.
-
-**Requires macOS 14 (Sonoma) or later.**
 
 ## Features
 
@@ -19,16 +29,11 @@ Runs entirely in the menu bar — no dock icon, no windows to manage. The overla
 
 ## Installation
 
-### From GitHub Releases
+### Download
 
-1. Download `Beacon.zip` from the [latest release](https://github.com/foundinblank/beacon-app/releases)
-2. Unzip and drag `Beacon.app` to your Applications folder
-3. **macOS Sequoia / Tahoe users:** The app is not yet notarized, so you may need to remove the quarantine attribute. Open Terminal and run:
-   ```
-   xattr -cr /Applications/Beacon.app
-   ```
-4. Open Beacon — it will appear in your menu bar
-5. Grant Accessibility permission if prompted
+Download the latest `Beacon.dmg` from [GitHub Releases](https://github.com/foundinblank/beacon-app/releases). Open the DMG and drag Beacon to your Applications folder.
+
+The app is signed and notarized by Apple — no quarantine workarounds needed.
 
 ### Build from Source
 
@@ -53,6 +58,10 @@ Beacon lives in your menu bar with a crosshair icon. Click it to toggle features
 | Ping (center cursor + ripple) | **Cmd+0** |
 | Open settings | Menu bar > Settings (or **Cmd+,**) |
 | Quit | Menu bar > Quit (or **Cmd+Q**) |
+
+## Privacy
+
+Beacon does not collect any data. All preferences are stored locally. See [Privacy Policy](PRIVACY.md).
 
 ## License
 
