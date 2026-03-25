@@ -16,4 +16,4 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Build
-        run: xcodebuild clean build -project Beacon/Beacon.xcodeproj -scheme Beacon
+        run: xcodebuild clean build -project Beacon/Beacon.xcodeproj -scheme Beacon CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
