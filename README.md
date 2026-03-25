@@ -12,7 +12,7 @@
 
 ---
 
-Beacon adds a customizable crosshair overlay, spotlight mode, and ping animation so you never lose sight of your cursor. Designed for visually impaired users, anyone with a large or multi-monitor setup, and presenters who want their audience to follow along.
+Beacon adds a customizable crosshair overlay, spotlight mode, and ping animation so you never lose sight of your cursor. Designed for blind & visually impaired users, anyone with a large or multi-monitor setup, and presenters who want their audience to follow along.
 
 Runs entirely in the menu bar — no dock icon, no windows to manage. The overlay is click-through, so it never interferes with your workflow.
 
@@ -32,8 +32,6 @@ Runs entirely in the menu bar — no dock icon, no windows to manage. The overla
 ### Download
 
 Download the latest `Beacon.dmg` from [GitHub Releases](https://github.com/foundinblank/beacon-app/releases). Open the DMG and drag Beacon to your Applications folder.
-
-The app is signed and notarized by Apple — no quarantine workarounds needed.
 
 ### Build from Source
 
@@ -57,7 +55,12 @@ Beacon lives in your menu bar with a crosshair icon. Click it to toggle features
 | Toggle spotlight | Menu bar > Spotlight |
 | Ping (center cursor + ripple) | **Cmd+0** |
 | Open settings | Menu bar > Settings (or **Cmd+,**) |
+| Replay welcome guide | Menu bar > Welcome Guide (or Settings > General) |
 | Quit | Menu bar > Quit (or **Cmd+Q**) |
+
+## Support
+
+Have a question, found a bug, or want to request a feature? [Open an issue](https://github.com/foundinblank/beacon-app/issues).
 
 ## Privacy
 

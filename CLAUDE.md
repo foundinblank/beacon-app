@@ -6,7 +6,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Beacon is a macOS menu-bar-only accessibility app that helps visually impaired users track the mouse cursor. It provides a crosshair overlay, spotlight mode, reading guide ("focus strip"), and auto-center with flash animation. No dock icon (`LSUIElement = true`). Target: macOS 14+ (Sonoma), App Store distribution.
 
-Full specification: `.claude/plans/beacon-v1.md`
 
 ## Tech Stack
 
