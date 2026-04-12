@@ -11,3 +11,6 @@ DerivedData/
 
 ## Worktrees
 .worktrees/
+
+## App Store submission assets (screenshots, preview videos, raw recordings)
+dont-upload/
