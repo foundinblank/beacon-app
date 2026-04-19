@@ -93,7 +93,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         hotkeyManager?.start()
 
         DiagnosticsManager.shared.start()
-        AccessibilityPermission.promptIfNeeded()
 
         if !defaults.bool(forKey: SettingsKeys.hasCompletedOnboarding) {
             showOnboarding()

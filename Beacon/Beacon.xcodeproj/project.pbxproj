@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A10000010000000000000070 /* GlobalHotkeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000070 /* GlobalHotkeyManager.swift */; };
 		A10000010000000000000001 /* BeaconApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000001 /* BeaconApp.swift */; };
 		A10000010000000000000002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000002 /* AppDelegate.swift */; };
 		A10000010000000000000003 /* OverlayWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000003 /* OverlayWindowController.swift */; };
@@ -27,7 +26,7 @@
 		A10000010000000000000040 /* PingSettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000040 /* PingSettingsTab.swift */; };
 		A10000010000000000000050 /* RippleAnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000050 /* RippleAnimationManager.swift */; };
 		A10000010000000000000060 /* ColorPickerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000060 /* ColorPickerRow.swift */; };
-		A10000010000000000000080 /* AccessibilityPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000080 /* AccessibilityPermission.swift */; };
+		A10000010000000000000070 /* GlobalHotkeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000070 /* GlobalHotkeyManager.swift */; };
 		A10000010000000000000090 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A10000020000000000000090 /* PrivacyInfo.xcprivacy */; };
 		A100000100000000000000A0 /* DiagnosticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100000200000000000000A0 /* DiagnosticsManager.swift */; };
 		A100000100000000000000B0 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100000200000000000000B0 /* OnboardingView.swift */; };
@@ -56,7 +55,6 @@
 		A10000020000000000000050 /* RippleAnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RippleAnimationManager.swift; sourceTree = "<group>"; };
 		A10000020000000000000060 /* ColorPickerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerRow.swift; sourceTree = "<group>"; };
 		A10000020000000000000070 /* GlobalHotkeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHotkeyManager.swift; sourceTree = "<group>"; };
-		A10000020000000000000080 /* AccessibilityPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityPermission.swift; sourceTree = "<group>"; };
 		A10000020000000000000090 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		A100000200000000000000A0 /* DiagnosticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsManager.swift; sourceTree = "<group>"; };
 		A100000200000000000000B0 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -74,13 +72,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A10000050000000000000010 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		A10000050000000000000001 = {
 			isa = PBXGroup;
 			children = (
@@ -126,7 +117,6 @@
 		A10000050000000000000005 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				A10000020000000000000080 /* AccessibilityPermission.swift */,
 				A100000200000000000000A0 /* DiagnosticsManager.swift */,
 				A10000020000000000000070 /* GlobalHotkeyManager.swift */,
 				A10000020000000000000006 /* MouseTracker.swift */,
@@ -171,6 +161,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		A10000050000000000000010 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -199,7 +196,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 2630;
+				LastUpgradeCheck = 2640;
 				TargetAttributes = {
 					A10000060000000000000001 = {
 						CreatedOnToolsVersion = 15.4;
@@ -260,7 +257,6 @@
 				A10000010000000000000040 /* PingSettingsTab.swift in Sources */,
 				A10000010000000000000050 /* RippleAnimationManager.swift in Sources */,
 				A10000010000000000000060 /* ColorPickerRow.swift in Sources */,
-				A10000010000000000000080 /* AccessibilityPermission.swift in Sources */,
 				A100000100000000000000A0 /* DiagnosticsManager.swift in Sources */,
 				A100000100000000000000B0 /* OnboardingView.swift in Sources */,
 			);
@@ -305,6 +301,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 2N8PF27ZYS;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -369,6 +366,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 2N8PF27ZYS;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -399,7 +397,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 2N8PF27ZYS;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Beacon/Resources/Info.plist;
@@ -428,7 +425,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 2N8PF27ZYS;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Beacon/Resources/Info.plist;

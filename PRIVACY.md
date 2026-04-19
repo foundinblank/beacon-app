@@ -24,10 +24,6 @@ The App stores your preferences (such as color choices, overlay settings, and fe
 
 The App uses Apple's MetricKit framework to collect crash and performance diagnostics. This data is handled entirely by Apple and is available to the developer only in aggregate through Xcode Organizer. No personally identifiable information is included. You can opt out of sharing diagnostics in System Settings > Privacy & Security > Analytics & Improvements.
 
-## Permissions
-
-The App may request Accessibility permission to enable the cursor centering (Ping) feature. This permission is used solely to move your mouse cursor and is never used to read screen content or monitor input.
-
 ## Contact
 
 If you have questions about this privacy policy, please open an issue at [github.com/foundinblank/beacon-app](https://github.com/foundinblank/beacon-app/issues).

@@ -5,7 +5,7 @@ struct OnboardingView: View {
     var onComplete: () -> Void
     @State private var currentPage = 0
 
-    private let totalPages = 4
+    private let totalPages = 3
 
     var body: some View {
         VStack(spacing: 0) {
@@ -14,8 +14,7 @@ struct OnboardingView: View {
                 switch currentPage {
                 case 0: welcomePage
                 case 1: featuresPage
-                case 2: permissionsPage
-                case 3: getStartedPage
+                case 2: getStartedPage
                 default: welcomePage
                 }
             }
@@ -139,41 +138,7 @@ struct OnboardingView: View {
         }
     }
 
-    // MARK: - Page 3: Accessibility Permission
-
-    private var permissionsPage: some View {
-        VStack(spacing: 20) {
-            Image(systemName: "lock.shield")
-                .font(.system(size: 48))
-                .foregroundStyle(Color.accentColor)
-
-            Text("Accessibility Access")
-                .font(.title2)
-                .fontWeight(.semibold)
-
-            Text("Beacon needs Accessibility access for the Ping feature to center your cursor. Without it, Ping will show the ripple animation but won't move your cursor.")
-                .font(.body)
-                .multilineTextAlignment(.center)
-                .foregroundStyle(.secondary)
-                .padding(.horizontal, 32)
-
-            Button("Open Accessibility Settings") {
-                NSWorkspace.shared.open(
-                    URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility")!
-                )
-            }
-            .buttonStyle(.bordered)
-
-            Text("If Beacon isn't listed, click the + button to add it.\nYou can skip this — Ping will still show the ripple animation.")
-                .font(.caption)
-                .foregroundStyle(.tertiary)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 40)
-        }
-        .padding(.top, 16)
-    }
-
-    // MARK: - Page 4: Get Started
+    // MARK: - Page 3: Get Started
 
     private var getStartedPage: some View {
         VStack(spacing: 16) {
